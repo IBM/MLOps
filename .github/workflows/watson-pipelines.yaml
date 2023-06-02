@@ -29,13 +29,22 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo "Hello, $USER_NAME!"
-        env:
-          USER_NAME: ${{ secrets.USER_NAME}}
+
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Setup cpdctl
         run: |
           curl -L https://github.com/IBM/cpdctl/releases/download/latest/cpdctl_linux_amd64.tar.gz --output cpdctl_linux_amd64.tar.gz
-          tar -zxvf cpdctl_linux_amd64.tar.gz
-          ./cpdctl -v
+          tar -xf cpdctl_linux_amd64.tar.gz
+          id
+          ls -lah
+          ./cpdctl config user set $USER_NAME --apikey $API_KEY --username $USER_NAME
+          ./cpdctl config profile set cpd-context --user $USER_NAME --url $CLUSTER_URL
+          ./cpdctl project list
+        env:
+          CLUSTER_URL: ${{ secrets.CLUSTER_URL}}
+          USER_NAME: ${{ secrets.USER_NAME}}
+          API_KEY: ${{ secrets.API_KEY}}
+
+
 
