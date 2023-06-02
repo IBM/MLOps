@@ -34,7 +34,10 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Setup cpdctl
         run: |
-          curl -L https://github.com/IBM/cpdctl/releases/download/latest/cpdctl_linux_amd64.tar.gz --output cpdctl_linux_amd64.tar.gz
+          curl https://api.github.com/repos/IBM/cpdctl/releases/latest \
+          | grep "browser_download_url.*linux_amd64.tar.gz" \
+          | cut -d : -f 2,3 | tr -d \" | wget -qi -
+          
           tar -xf cpdctl_linux_amd64.tar.gz
           id
           ls -lah
