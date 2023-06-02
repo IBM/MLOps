@@ -35,5 +35,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          curl -L https://github.com/IBM/cpdctl/releases/download/latest/cpdctl_linux_amd64.tar.gz --output cpdctl_linux_amd64.tar.gz
+          tar -zxvf cpdctl_linux_amd64.tar.gz
+          ./cpdctl -v
+
