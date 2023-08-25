@@ -49,6 +49,12 @@ jobs:
           USER_NAME: ${{ secrets.USER_NAME}}
           API_KEY: ${{ secrets.API_KEY}}
 
+      # gets the job id
+      - name: get job id
+        run: cpdctl job list --project-id $PROJECT_ID
+        env:
+          PROJECT_ID: ${{ secrets.PROJECT_ID}}
+        
       # Runs a pipeline job
       - name: Run pipeline job
         run: |
