@@ -51,7 +51,7 @@ jobs:
 
       # gets the job id
       - name: get job id
-        run: cpdctl job list --project-id $PROJECT_ID
+        run: ./cpdctl job list --project-id $PROJECT_ID
         env:
           PROJECT_ID: ${{ secrets.PROJECT_ID}}
         
