@@ -49,7 +49,7 @@ jobs:
           USER_NAME: ${{ secrets.USER_NAME}}
           API_KEY: ${{ secrets.API_KEY}}
 
-      # gets the job id
+      # gets the job id (just for debugging. JOB_ID is actually hardcoded right now)
       - name: get job id
         run: ./cpdctl job list --project-id $PROJECT_ID
         env:
