@@ -31,11 +31,9 @@ tbd...
 
 <details>
 <summary><b> need a detailed description?</b></summary>
-<!-- <img width="1000" src="images\2023-08-31-09_10_14.png"> -->
 
-<!-- ![Alt text](images\2023-08-31-09_10_14.png) -->
 tbd...
-![Alt text](images\2023-08-31-09_10_14.png)
+![Alt text](/images/2023-08-31-09_10_14.png)
 
 Use the github repo address and your private access token 
 You can Alter the notebooks to your needs if you want to. It is important that you keep the naming of the notebooks.
