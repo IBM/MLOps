@@ -1,0 +1,64 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "dev" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    
+  
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo "Hello, $USER_NAME!"
+
+
+      # Runs a set of commands using the runners shell
+      - name: Setup cpdctl
+        run: |
+          curl "https://api.github.com/repos/IBM/cpdctl/releases/latest" \
+          | grep "browser_download_url.*linux_amd64.tar.gz" \
+          | cut -d : -f 2,3 | tr -d \" | wget -qi -
+          
+          tar -xf cpdctl_linux_amd64.tar.gz
+          id
+          ls -lah
+          ./cpdctl config user set $USER_NAME --apikey $API_KEY --username $USER_NAME
+          ./cpdctl config profile set cpd-context --user $USER_NAME --url $CLUSTER_URL
+          ./cpdctl project list
+        env:
+          CLUSTER_URL: ${{ secrets.CLUSTER_URL}}
+          USER_NAME: ${{ secrets.USER_NAME}}
+          API_KEY: ${{ secrets.API_KEY}}
+
+      # gets the job id (just for debugging. JOB_ID is actually hardcoded right now)
+      - name: get job id
+        run: ./cpdctl job list --project-id $PROJECT_ID
+        env:
+          PROJECT_ID: ${{ secrets.PROJECT_ID}}
+        
+      # Runs a pipeline job
+      - name: Run pipeline job
+        run: |
+          ./cpdctl job run create --job-id $JOB_ID --project-id $PROJECT_ID --job-run='{"configuration": {"env_variables": []}, "description": "Description", "job_parameters": [], "name": "Name", "parameter_sets": []}'
+        env:
+          JOB_ID: ${{ secrets.JOB_ID}}
+          PROJECT_ID: ${{ secrets.PROJECT_ID}}
