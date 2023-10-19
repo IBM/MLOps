@@ -51,7 +51,7 @@ jobs:
 
       # gets the job id (just for debugging. JOB_ID is actually hardcoded right now)
       - name: get job id
-        run: ./cpdctl job list --project-id $PROJECT_ID
+        run: export JOB_ID=$(./cpdctl job list --project-id $PROJECT_ID | awk 'NR==4 {print $1}')
         env:
           PROJECT_ID: ${{ secrets.PROJECT_ID}}
         
@@ -60,5 +60,4 @@ jobs:
         run: |
           ./cpdctl job run create --job-id $JOB_ID --project-id $PROJECT_ID --job-run='{"configuration": {"env_variables": []}, "description": "Description", "job_parameters": [], "name": "Name", "parameter_sets": []}'
         env:
-          JOB_ID: ${{ secrets.JOB_ID}}
           PROJECT_ID: ${{ secrets.PROJECT_ID}}
