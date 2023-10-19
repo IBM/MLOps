@@ -51,7 +51,8 @@ jobs:
 
       # gets the job id (just for debugging. JOB_ID is actually hardcoded right now)
       - name: get job id
-        run: export JOB_ID=$(./cpdctl job list --project-id $PROJECT_ID | awk 'NR==4 {print $1}')
+        run: export JOB_ID=$(./cpdctl job list --project-id $PROJECT_ID | grep -Eo '^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}' | awk 'NR==1 {print $1}')
+            ./cpdctl job list --project-id $PROJECT_ID
         env:
           PROJECT_ID: ${{ secrets.PROJECT_ID}}
 
