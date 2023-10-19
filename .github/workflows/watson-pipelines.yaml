@@ -54,6 +54,10 @@ jobs:
         run: export JOB_ID=$(./cpdctl job list --project-id $PROJECT_ID | awk 'NR==4 {print $1}')
         env:
           PROJECT_ID: ${{ secrets.PROJECT_ID}}
+
+      # debug!
+      - name: Run a one-line script
+        run: echo "This is Job ID, $JOB_ID!"
         
       # Runs a pipeline job
       - name: Run pipeline job
