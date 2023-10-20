@@ -8,10 +8,10 @@ Convert APAC MLOps Accelerator from CP4DaaS to CP4DS
 
 ### Todo
 ---
-- [ ] Cut out all use of Cloud Object Storage
-- [ ] Reduce use of /utils to a minimum
-- [ ] Remove use of *seaborn/sns*
-- [ ] **Use WML .from_token instead of api_key
+- [x] Cut out all use of Cloud Object Storage ✅ 2023-10-04
+- [x] Reduce use of /utils to a minimum ✅ 2023-10-04
+- [x] Remove use of *seaborn/sns* ✅ 2023-10-04
+- [x] **Use WML .from_token instead of api_key ✅ 2023-10-04
 - [ ]
 - [ ]
 
