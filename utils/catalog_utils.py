@@ -25,10 +25,12 @@ class CatalogUtils:
 
     """
 
+
     access_token: str
     project_id: str
 
     def get_wml_client(self):
+
 
 
         wml_credentials = {
