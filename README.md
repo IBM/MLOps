@@ -5,6 +5,7 @@
 This repo can be used as a starter kit to setup a fully git integrated Machine Learning Operations enviroment using Cloud Pak for Data. It uses a simple "credit score prediction" usecase that is split up into 4 jupyter notebooks as an example, which can easily be adapted to your business problem. 
 
 ![high level overview using three stages](/images/2023-09-05-11_00_27.png)
+
 *high level overview using three stages*
 
 
@@ -188,5 +189,6 @@ You can use the same token you used in step 2. If you dont have it anymore you c
 
 ## 9. Setup monitoring using open scale
    wip -- coming soon
+
 
     

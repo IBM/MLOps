@@ -25,23 +25,19 @@ class CatalogUtils:
 
     """
 
-    service_url: str
-    auth_url: str
-    host_url: str
+
     access_token: str
     project_id: str
 
     def get_wml_client(self):
 
-        # wml_credentials = {
-        #     "url": "https://us-south.ml.cloud.ibm.com",
-        #     "apikey": self.api_key,
-        # }
+
+
         wml_credentials = {
-                   "url": "<URL>",
-                   "token": self.access_token,
-                   "instance_id": "openshift"
-                #    "version": "4.0"
+           "token": access_token,
+           "instance_id" : "openshift",
+           "url": os.environ['RUNTIME_ENV_APSX_URL'],
+           "version": "4.6"
         }
         wml_client = APIClient(wml_credentials)
         return wml_client
