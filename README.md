@@ -91,6 +91,33 @@ repeat those steps for all five notebooks.
 once you are done it should look like this.
 
 
+We also need to create a .env file within the "01-staging-area" project. This file will contain the credentials that the pipeline will use to pull the code from github.
+
+![Alt text](/images/image-100.png)
+
+Click "Launch IDE" and then "JupyterLab" to get access to the JupyterLab environment. 
+
+![Alt text](/images/image-103.png)
+
+You will be greeted by a tab called "Terminal 1". There you copy the following commands and hit enter:
+
+```bash
+
+echo "repo_adresse=PUT_YOUR_REPO_ADDRESS_HERE" > .env
+echo "personal_access_token=PUT_YOUR_TOKEN_HERE" >> .env
+echo "branch_name=main" >> .env
+
+```
+
+![Alt text](/images/image-102.png)
+
+You can check if everything worked by typing 
+   
+   ```bash
+   cat .env
+   ```
+If that command displays the content of the .env file you are good to go. 
+
 </details>
 
 ## 5. Create a NON-git-enabled project called "02-automation-area"
