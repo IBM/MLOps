@@ -20,6 +20,8 @@ pipeline_path = os.path.join(data_path, pipeline_filename)
 
 model_name="credit_risk_prediction"
 
+deployment_name="credit_risk_prediction"
+
 #### UTILS ####
 
 def download_data_to_filesystem(raw_data_path):
