@@ -19,6 +19,7 @@ pipeline_filename = "feature_encode.pkl"
 pipeline_path = os.path.join(data_path, pipeline_filename)
 
 model_name="credit_risk_prediction"
+model_path = os.path.join(data_path, model_name+".pkl")
 
 deployment_name="credit_risk_prediction"
 
