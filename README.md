@@ -15,7 +15,7 @@ These instructions will guide you through the setup of a simple MLOps environmen
 
 It is assumed that you have a "Cloud Pak for Data" instance available and that you have admin rights to it (This will not work with the cloud based "as a Service" Offering). 
 
-![Alt text](/images/image-1.png)
+![image](https://github.com/IBM/MLOps/assets/23448917/524541c8-4a4d-4a67-ac2a-fb2e416155d5)
 *detailed view using two stages*
 ## 1. Fork this repo
 
