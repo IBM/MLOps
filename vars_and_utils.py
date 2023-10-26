@@ -29,6 +29,12 @@ deployment_space_id_PROD="c4238e9c-1cbd-4776-aa6e-4f6b1f865ed1"
 #### UTILS ####
 
 def download_data_to_filesystem(raw_data_path):
+    """
+    Download the german_credit_data_biased_training.csv data from a given URL and save it to the specified file path.
+
+    Parameters:
+    - raw_data_path (str): Destination path where the CSV will be saved.
+    """
     url = "https://raw.githubusercontent.com/IBM/monitor-wml-model-with-watson-openscale/master/data/german_credit_data_biased_training.csv"
     response = requests.get(url)
 
@@ -59,33 +65,21 @@ def check_for_file_in_filesystem(path):
         return False   
 
 
-def load_model(key, filename):
+def load_model(filename):
+    """
+    Load model from the specified file path.
+
+    Parameters:
+    - filename (str): Path to the model file.
+
+    Returns:
+    - object: The deserialized model/pipeline object.
+    """
     check_for_file_in_filesystem(filename)
     with open (filename,"rb") as f:
         pipeline = pickle.load(f)
     return pipeline
 
-
-def download_data_to_filesystem(raw_data_path):
-    url = "https://raw.githubusercontent.com/IBM/monitor-wml-model-with-watson-openscale/master/data/german_credit_data_biased_training.csv"
-    response = requests.get(url)
-
-    # Check if the request was successful
-    if response.status_code == 200:
-        
-        # Ensure the directory exists
-        directory = os.path.dirname(raw_data_path)
-        if not os.path.exists(directory):
-            os.makedirs(directory)
-
-        # Write the content to the file
-        with open(raw_data_path, "wb") as file:
-            file.write(response.content)
-        print("Downloaded and saved as "+raw_data_path)
-    else:
-        print("Failed to download the CSV file. Status code:", response.status_code)
-
-    
 
 def load_data_from_db2():
     '''
@@ -111,17 +105,26 @@ def load_data_from_db2():
     raise Exception("not implemented")
 
 
-def load_data(file_path):
+def load_german_credit_risk_data():
+    """
+    checks if it can find the data in db2 or on the local filesystem.
+    If necessary downloads it from the internet. 
+    Returns it as a dataframe
+
+    Returns:
+        pandas df: german credit risk data
+    """
     try:
         return load_data_from_db2()
     except:
         print("Error while loading data from db2. downloading csv file to filesystem instead")
 
-    if os.path.isfile(file_path):
-        print("File already exists")
+    if os.path.isfile(raw_data_path):
+        print("File already exists in filesystem.")
     else:
-        download_data_to_filesystem(file_path)
-    return pd.read_csv(file_path)
+        download_data_to_filesystem(raw_data_path)
+    print("loading data to pandas dataframe")
+    return pd.read_csv(raw_data_path)
 
 
 def save_data_in_filesystem(df,filename):
