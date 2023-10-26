@@ -6,6 +6,8 @@ This repo can be used as a starter kit to setup a fully git integrated Machine L
 
 It tries to be as simple as possible and showing the basic concepts of MLOps using IBM tools. The intended use it that after you have set everyhting up and familiarized yourself with the concepts you throw out all the "credit score prediction" code and replace it with whatever problem you are trying to solve.
 
+For an overview over the whole field of MLOps refer to https://ibm.github.io/MLOps/
+
 ![high level overview using three stages](/images/2023-09-05-11_00_27.png)
 
 *high level overview using three stages*
