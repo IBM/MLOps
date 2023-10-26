@@ -23,6 +23,9 @@ model_path = os.path.join(data_path, model_name+".pkl")
 
 deployment_name="credit_risk_prediction"
 
+deployment_space_id_DEV="afdasdf"
+deployment_space_id_PROD="c4238e9c-1cbd-4776-aa6e-4f6b1f865ed1"
+
 #### UTILS ####
 
 def download_data_to_filesystem(raw_data_path):
