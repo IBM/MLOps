@@ -23,7 +23,7 @@ model_path = os.path.join(data_path, model_name+".pkl")
 
 deployment_name="credit_risk_prediction"
 
-deployment_space_id_DEV="afdasdf"
+deployment_space_id_DEV="c4238e9c-1cbd-4776-aa6e-4f6b1f865ed1"
 deployment_space_id_PROD="c4238e9c-1cbd-4776-aa6e-4f6b1f865ed1"
 
 #### UTILS ####
@@ -145,3 +145,21 @@ def save_data_in_filesystem(df,filename):
     except Exception as e:
         print(e)
         print(f"File serialization for {filename} failed")
+        
+        
+def load_data_from_filesystem(path):
+    """
+    Check existence of path in filesystem.
+    If it does exist, loads csv via path
+    If it does NOT exist, try to load data from Db2
+    """
+    body = check_for_file_in_filesystem(path)
+    if body:
+        suffix = path[-3:]
+        # Check whether path ends on csv
+        if suffix == "csv":
+            gcf_df = pd.read_csv(path)
+        else:
+            with open(path) as f:
+                gcf_df = pickle.load(f)
+        return gcf_df
