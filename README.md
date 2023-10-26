@@ -1,8 +1,10 @@
-
+![Alt text](images/banner.png)
 # README
 ---
 
-This repo can be used as a starter kit to setup a fully git integrated Machine Learning Operations enviroment using Cloud Pak for Data. It uses a simple "credit score prediction" usecase that is split up into 4 jupyter notebooks as an example, which can easily be adapted to your business problem. 
+This repo can be used as a starter kit to setup a fully git integrated Machine Learning Operations enviroment using Cloud Pak for Data and (in the future) watsonx. It uses a simple "credit score prediction" usecase that is split up into 4 jupyter notebooks as an example, which can easily be adapted to your business problem. 
+
+It tries to be as simple as possible and showing the basic concepts of MLOps using IBM tools. The intended use it that after you have set everyhting up and familiarized yourself with the concepts you throw out all the "credit score prediction" code and replace it with whatever problem you are trying to solve.
 
 ![high level overview using three stages](/images/2023-09-05-11_00_27.png)
 
@@ -15,7 +17,7 @@ These instructions will guide you through the setup of a simple MLOps environmen
 
 It is assumed that you have a "Cloud Pak for Data" instance available and that you have admin rights to it (This will not work with the cloud based "as a Service" Offering). 
 
-![Alt text](/images/image-1.png)
+![Alt text](/images/image-2.png)
 *detailed view using two stages*
 ## 1. Fork this repo
 
@@ -34,9 +36,11 @@ click the "Fork" button in the upper right corner of this repo. **IMPORTANT: unc
 <details>
 <summary><b> need a detailed description?</b></summary>
 
-
+### Overview
 ![Alt text](/images/2023-08-31-09_10_14.png)
 *this is the project that we are creating in this step*
+
+### Step by step
 ![Alt text](/images/image-2.png)
 navigate to all projects
 ![Alt text](/images/image-4.png)
@@ -60,6 +64,12 @@ You can Alter the notebooks to your needs if you want to. It is important that y
 <details>
 <summary><b> need a detailed description?</b></summary>
 
+### Overview
+![Alt text](/images/image-3.png)
+*this is the project that we are creating in this step*
+
+### Step by step
+
 ![Alt text](/images/image-2.png)
 navigate to all projects
 ![Alt text](/images/image-4.png)
@@ -73,6 +83,11 @@ Use the same github repo address and your private access token as in 2
 <details>
 <summary><b> need a detailed description?</b></summary>
 
+### Overview
+![Alt text](/images/image-4.png)
+*this is the project that we are creating in this step*
+
+### Step by step
 ![Alt text](/images/image-9.png)
 navigate to "view local branch"
 
@@ -125,6 +140,12 @@ If that command displays the content of the .env file you are good to go.
 <details>
 <summary><b> need a detailed description?</b></summary>
 
+### Overview
+![Alt text](/images/image-5.png)
+*this is the project that we are creating in this step*
+
+### Step by step
+
 ![Alt text](/images/image-3.png)
 repeat the same steps as in 2 and 3 but choose "create an empty project" to create a NON-git-enabled project. Name it "02-automation-area"
 
@@ -136,6 +157,12 @@ repeat the same steps as in 2 and 3 but choose "create an empty project" to crea
 ## 6. Configure pipeline in "02-automation-area"
 <details>
 <summary><b> need a detailed description?</b></summary>
+
+### Overview
+![Alt text](/images/image-6.png)
+*those are the pieces we are creating in this step*
+
+### Step by step
 
 ![Alt text](/images/image-16.png)
 Click "New Asset" and choose "Pipeline". Name the pipeline "mlops_pipeline"
@@ -158,6 +185,12 @@ Click "Run Pipeline" and then "create job". Give it a name like "mlops_pipeline_
 ## 7. Setup Github Actions 
 <details>
 <summary><b> need a detailed description?</b></summary>
+
+### Overview
+![Alt text](/images/image-7.png)
+*this is the piece that we are creating in this step*
+
+### Step by step
 
 We need a set of secrets to be able to run the github actions. Those secrets are:
 
