@@ -297,6 +297,7 @@ TODO: describe how to set up open scale
    - [ ] Finish Documentation of 8. Create deployment space and 9. Setup monitoring using open scale
    - [ ] Delete all projects and set everything up again acording to documentation to find what is missing(~ one day of work)
    - [ ] describe how good usermanagement can work (e.g. normal Users can only see the "01_data_science_playground" project)
+   - [ ] integrate Model Inventory/ model versioning
 
 
 - Known Issues
