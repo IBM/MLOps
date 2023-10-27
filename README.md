@@ -82,7 +82,15 @@ Use the same github repo address and your private access token as in 2
  
 </details>
 
-## 4. Configure Jobs in "01-staging-area"
+## 4. Configure custom enviroment in "01-staging-area"
+<details>
+<summary><b> need a detailed description?</b></summary>
+
+TODO: Add description here! (use custom_env.yaml)
+
+</details>
+
+## 5. Configure Jobs in "01-staging-area"
 <details>
 <summary><b> need a detailed description?</b></summary>
 
@@ -102,8 +110,10 @@ choose the first notebook "00-git-pull.ipynb" and click "configure job"
 
 ![Alt text](/images/image-13.png)
 give it the same name as the notebook and click "next"
+TODO: choose correct enviroment for every job
 accept all the defaults and click "next" until you can click "create job"
-repeat those steps for all five notebooks.
+TODO: add the "was_successful" output to every job
+repeat those steps for all six notebooks.
 
 ![Alt text](/images/image-14.png)
 once you are done it should look like this.
@@ -123,9 +133,15 @@ You will be greeted by a tab called "Terminal 1". There you copy the following c
 
 echo "repo_adresse=PUT_YOUR_REPO_ADDRESS_HERE" > .env
 echo "personal_access_token=PUT_YOUR_TOKEN_HERE" >> .env
+echo "project_id=PUT_YOUR_PROJECT_ID_HERE" >> .env
 echo "branch_name=main" >> .env
+echo "cpd_technical_user=PUT_USERNAME_HERE" >> .env
+echo "cpd_technical_user_password=PUT_PASSWORD_HERE">> .env
+echo "cpd_url=PUT_URL_HERE">> .env
 
 ```
+
+*cpd_technical_user* is a user that was created only to be used as a proxy in those scripts. If this is not available you can also use a *personal* user (i.e. the credentials you use to login) even though this not best practise
 
 ![Alt text](/images/image-102.png)
 
@@ -166,6 +182,7 @@ repeat the same steps as in 2 and 3 but choose "create an empty project" to crea
 *those are the pieces we are creating in this step*
 
 ### Step by step
+TODO: add global parameters
 
 ![Alt text](/images/image-16.png)
 Click "New Asset" and choose "Pipeline". Name the pipeline "mlops_pipeline"
@@ -175,6 +192,9 @@ go to "Run">"Run Notebook Job" and drag it onto the plane. Then doubleclick this
 
 ![Alt text](/images/image-19.png)
 choose "01-staging-area" and there the first notebook "00-git-pull.ipynb" and click "choose" and then "save"
+
+TODO: choose enviroment
+TODO: add pipeline params
 
 ![Alt text](/images/image-20.png)
 repeat those steps for all notebooks until you end up with something that looks like this.
@@ -248,10 +268,45 @@ You can use the same token you used in step 2. If you dont have it anymore you c
 
 </details>
 
-## 8. Try it out :-) 
+
+## 8. Create deployment space
+<details>
+<summary><b> need a detailed description?</b></summary>
+
+TODO: describe how to create deployment space
+
+</details>
 
 ## 9. Setup monitoring using open scale
-   wip -- coming soon
+<details>
+<summary><b> need a detailed description?</b></summary>
+
+TODO: describe how to set up open scale
+
+</details>
+
+## 10. Try it out :-) 
+
+
+
+## 11. Future Work and known issues
+<details>
+<summary><b> need a detailed description?</b></summary>
+
+- Future Work:
+   - [ ] Put AI Fact sheets back into the "03-train_model" notebook 
+   - [ ] Figure out what is wrong with the deployments and fix it
+   - [ ] Figure out what is wrong with monitoring (probably issue with the cluster we use)
+   - [ ] Finish Documentation of 8. Create deployment space and 9. Setup monitoring using open scale
+   - [ ] Delete all projects and set everything up again acording to documentation to find what is missing(~ one day of work)
+   - [ ] describe how good usermanagement can work (e.g. normal Users can only see the "01_data_science_playground" project)
+   - [ ] integrate Model Inventory/ model versioning
+
+
+- Known Issues
+   - 
+
+</details>
 
 
     
