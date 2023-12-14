@@ -1,8 +1,0 @@
-channels:
-  - defaults
-
-dependencies:
-  - pip:
-    - tensorflow-data-validation==1.14.0
-    - ibm-watson-studio-pipelines==0.2.12
-    - python-dotenv==1.0.0
