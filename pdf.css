@@ -1,0 +1,22 @@
+@page {
+    size: a4 portrait;
+    margin: 25mm 10mm 25mm 10mm;
+    counter-increment: page;
+    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 0.5rem;
+    white-space: pre;
+    color: #393939;
+    @top-left {
+        content: 'IBM';
+    }
+    @bottom-center {
+        content: string(chapter);
+    }
+    @bottom-right {
+        content: 'Page ' counter(page);
+    }
+}
+
+.md-main__inner {
+    height: 0% !important;
+}

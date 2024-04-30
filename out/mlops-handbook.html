@@ -1,0 +1,533 @@
+<html><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="MLOps Guide" name="description"/><meta content="Mihai Criveti, Dominik Kreuzberger" name="author"/><link href="https://pages.github.ibm.com/oic/mlops-guide/" rel="canonical"/><link href="site/favicon.ico" rel="icon"/><meta content="mkdocs-1.4.0, mkdocs-material-8.5.10" name="generator"/><title>MLOps Guide</title><link href="site/assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/><link href="site/assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/><link href="site/carbon.css" rel="stylesheet"/><link href="site/pdf.css" rel="stylesheet"/><script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script><script>
+    (function(s,t,a,n){s[t]||(s[t]=a,n=s[a]=function(){n.q.push(arguments)},
+    n.q=[],n.v=2,n.l=1*new Date)})(window,"InstanaEumObject","ineum");
+
+    ineum('reportingUrl', 'https://eum-orange-saas.instana.io');
+    ineum('key', '');
+    ineum('trackSessions');
+</script><script crossorigin="anonymous" defer="" src="https://eum.instana.io/eum.min.js"></script><script type="text/javascript">
+  window._ibmAnalytics = {
+    "settings": {
+      "name": "MLOps Guide",
+      "isSpa": false,
+      "tealiumProfileName": "ibm-intranet"
+    }
+  };
+  digitalData = {
+    "page": {
+      "pageInfo": {
+        "ibm": {
+          "siteId": "IBM_" + _ibmAnalytics.settings.name,
+        }
+      },
+      "category": {
+        "primaryCategory": "PC150"
+      }
+    }
+  };
+</script><script async="async" src="//1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript"></script><meta content="2024-04-08" name="Date" scheme="iso8601"/><meta content="en" name="Language" scheme="iso6391"/><meta content="index, follow" name="robots"/><link href="site/assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style><script src="site/assets/javascripts/glightbox.min.js"></script><style>@charset "UTF-8";
+:root {
+  string-set: author 'Mihai Criveti, Dominik Kreuzberger', copyright 'Copyright © IBM Open Innovation Community', title 'The MLOps guide'; }
+
+h1, h2, h3 {
+  string-set: chapter content(); }
+@page {
+  size: a4 portrait;
+  margin: 25mm 10mm 25mm 10mm;
+  counter-increment: page;
+  white-space: pre;
+  color: grey;
+  @top-right {
+    font-size: 7pt;
+    content: string(chapter); }
+  @bottom-center {
+    font-size: 8pt;
+    content: "- " counter(page) "/" counter(pages) " -"; }
+  @bottom-right {
+    font-size: 6pt;
+    content: string(copyright); } }
+
+@media print {
+  body {
+    background: none;
+    background-color: #fff; } }
+
+article,
+section + section {
+  page-break-before: always;
+  min-height: 100vh;
+  /* Defining all page breaks */ }
+  article,
+  article h1,
+  article h2,
+  article h3,
+  article h4,
+  article h5,
+  article h6,
+  article div.tabbed-content--wrap > .tabbed-content,
+  section + section,
+  section + section h1,
+  section + section h2,
+  section + section h3,
+  section + section h4,
+  section + section h5,
+  section + section h6,
+  section + section div.tabbed-content--wrap > .tabbed-content {
+    clear: both; }
+  article h1,
+  article h2,
+  article h3,
+  article h4,
+  article h5,
+  article h6,
+  article img,
+  section + section h1,
+  section + section h2,
+  section + section h3,
+  section + section h4,
+  section + section h5,
+  section + section h6,
+  section + section img {
+    page-break-after: avoid;
+    page-break-inside: avoid; }
+  article a,
+  article blockquote,
+  article table,
+  article ul,
+  article ol,
+  section + section a,
+  section + section blockquote,
+  section + section table,
+  section + section ul,
+  section + section ol {
+    page-break-before: avoid;
+    page-break-inside: avoid; }
+  article pre,
+  article dt + dd,
+  section + section pre,
+  section + section dt + dd {
+    page-break-before: avoid; }
+  article h1 + ul,
+  article h2 + ul,
+  article h3 + ul,
+  article h4 + ul,
+  article h5 + ul,
+  article h6 + ul,
+  article h1 + ol,
+  article h2 + ol,
+  article h3 + ol,
+  article h4 + ol,
+  article h5 + ol,
+  article h6 + ol,
+  section + section h1 + ul,
+  section + section h2 + ul,
+  section + section h3 + ul,
+  section + section h4 + ul,
+  section + section h5 + ul,
+  section + section h6 + ul,
+  section + section h1 + ol,
+  section + section h2 + ol,
+  section + section h3 + ol,
+  section + section h4 + ol,
+  section + section h5 + ol,
+  section + section h6 + ol {
+    page-break-inside: auto; }
+  article div.admonition,
+  section + section div.admonition {
+    page-break-inside: avoid; }
+  article div.tabbed-content--wrap,
+  section + section div.tabbed-content--wrap {
+    page-break-inside: avoid; }
+  article * + div.highlight,
+  article * + div.tabbed-set,
+  section + section * + div.highlight,
+  section + section * + div.tabbed-set {
+    page-break-before: avoid; }
+
+section.two-columns {
+  columns: 2;
+  column-gap: 1cm; }
+
+article h1 {
+  border-bottom: 2px solid #f00; }
+
+article h2 {
+  border-bottom: 1px solid #f99; }
+
+article h3 {
+  border-bottom: 0.5px solid #eee; }
+
+article h1 > .pdf-order,
+article h2 > .pdf-order,
+article h3 > .pdf-order {
+  padding-left: 6px; }
+
+article#doc-toc {
+  margin: 0 .8rem 1.2rem;
+  padding-top: .6rem;
+  font-size: 12pt;
+  line-height: 1.6; }
+  article#doc-toc > h1 {
+    margin: 0 0 2rem;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: -.01em;
+    page-break-after: auto;
+    page-break-inside: auto;
+    bookmark-level: none; }
+    article#doc-toc > h1::before {
+      display: block;
+      margin-top: -9px;
+      padding-top: 9px;
+      content: ""; }
+  article#doc-toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 1em;
+    font-size: 8pt;
+    page-break-inside: auto !important; }
+  article#doc-toc li {
+    list-style: none; }
+    article#doc-toc li > a {
+      color: inherit;
+      text-decoration: none;
+      padding-top: 0.4rem;
+      border-bottom: 1px dotted #ddd;
+      display: inline-block;
+      width: 100%; }
+      article#doc-toc li > a > .pdf-order {
+        padding-right: 0.5em; }
+      article#doc-toc li > a::after {
+        float: right;
+        content: target-counter(attr(href), page); }
+
+@media print {
+  html {
+    font-size: 95%;
+    font-family: 'Kelmscott Roman NF', 'Noto Serif JP', serif; }
+  body {
+    font-size: 10.5pt;
+    font-family: 'Classico URW T OT', 'Noto Serif JP', serif; }
+  article {
+    font-size: 0.8rem;
+    line-height: 1.6; }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  label {
+    font-family: 'Gentium Book Basic', 'Helvetica Neue', Helvetica, Arial, 'Noto Sans JP', 'Roboto', sans-serif; }
+  pre,
+  code,
+  var,
+  samp,
+  kbd,
+  tt {
+    font-family: 'Noto Sans Mono CJK JP', 'Courier New', monospace, serif;
+    font-size: 0.8em; }
+  pre code,
+  pre var,
+  pre samp,
+  pre kbd,
+  pre tt {
+    font-size: 100%; } }
+@page :first {
+  @top-right {
+    content: normal; }
+  @bottom-center {
+    content: normal; }
+  @bottom-right {
+    content: normal; } }
+
+article#doc-cover {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; }
+  article#doc-cover > .wrapper {
+    flex: 1 0 auto;
+    text-align: center;
+    padding: 0 3rem; }
+    article#doc-cover > .wrapper.upper {
+      flex: 1 1 auto;
+      max-height: 30vh; }
+      article#doc-cover > .wrapper.upper > .logo {
+        width: 100%;
+        height: 100%;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        background-size: contain; }
+    article#doc-cover > .wrapper h1 {
+      font-size: 36pt;
+      line-height: 1.4; }
+    article#doc-cover > .wrapper h2 {
+      border: none;
+      bookmark-level: none; }
+  article#doc-cover > .properties {
+    flex: 0 0 auto;
+    text-align: right;
+    padding: 0 2rem; }
+    article#doc-cover > .properties p#copyright {
+      font-size: 80%; }
+
+article#doc-back_cover {
+  page: back_cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center; }
+  article#doc-back_cover .wrapper {
+    flex: 1 0 auto;
+    display: inline-block;
+    background: #eee; }
+  article#doc-back_cover .qrcode {
+    display: inline-block;
+    flex: 0 0 auto;
+    background: #eee; }
+    article#doc-back_cover .qrcode > a {
+      display: inline-block;
+      padding: 0.5em 2em;
+      border-radius: 1em;
+      background-color: #fff; }
+      article#doc-back_cover .qrcode > a img {
+        width: 100%;
+        height: auto; }
+
+@page back_cover {
+  background-color: #eee;
+  @top-right {
+    content: normal; }
+  @bottom-center {
+    content: normal; }
+  @bottom-left {
+    font-size: 8pt;
+    content: string(title); }
+  @bottom-right {
+    font-size: 8pt;
+    content: string(copyright); } }
+</style><style>@media print {
+  .md-typeset .tabbed-set {
+    display: block; }
+    .md-typeset .tabbed-set .tabbed-content--wrap {
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 0.25rem; }
+      .md-typeset .tabbed-set .tabbed-content--wrap > input {
+        display: none; }
+      .md-typeset .tabbed-set .tabbed-content--wrap > label {
+        background-color: rgba(170, 170, 170, 0.2);
+        padding: 0.2rem 2rem;
+        margin: 0;
+        font-weight: 600;
+        color: #666;
+        border-radius: 3px 3px 0 0;
+        border-bottom-color: transparent; }
+      .md-typeset .tabbed-set .tabbed-content--wrap > .tabbed-content {
+        display: block;
+        box-shadow: none; }
+  .md-typeset .admonition-title + .tabbed-set:last-child,
+  .md-typeset summary + .tabbed-set:last-child {
+    margin-top: 0.5rem; }
+  .md-typeset > details summary::after {
+    display: none; }
+  .md-typeset > div, .md-typeset > div.admonition, .md-typeset > details, .md-typeset > div.tabbed-set, .md-typeset > blockquote, .md-typeset > mark, .md-typeset > table, .md-typeset > p {
+    margin-left: 0.7rem; }
+  .md-typeset > table.highlighttable {
+    margin: 0 0 0 0.7rem; }
+  .md-typeset table.highlighttable,
+  .md-typeset table.highlighttable > tbody {
+    width: 100%; }
+  .md-typeset table.highlighttable {
+    padding-bottom: 0.5em; }
+    .md-typeset table.highlighttable .linenos {
+      padding-bottom: 0; }
+  .md-typeset > ul {
+    margin-left: 1.5rem; }
+  .md-typeset h4,
+  .md-typeset h5,
+  .md-typeset h6 {
+    margin-left: 0.25rem; }
+  .md-typeset *:not(h3) + h4 {
+    margin-top: 1.5rem; }
+  .md-typeset hr {
+    border-bottom: 1px dotted #999; }
+  .md-typeset .footnote {
+    line-height: 1.1; }
+  .md-typeset table:not([class]) th, .md-typeset table:not([class]) td {
+    padding: 0.5em 1.25rem 0.4em; }
+  .md-typeset table:not([class]) td {
+    border-bottom: 1px solid #eee; }
+  .md-typeset span.twemoji {
+    vertical-align: middle;
+    height: 1.125rem;
+    display: inline-block; }
+    .md-typeset span.twemoji > img {
+      height: 1.125rem;
+      vertical-align: middle;
+      display: inline-block; } }
+.md-typeset kbd {
+  vertical-align: middle;
+  border-color: #b8b8b8;
+  border-style: outset;
+  border-width: .05rem .075rem .1rem .075rem;
+  border-radius: .25rem;
+  box-shadow: none; }
+
+:root {
+  --print-md-admonition-icon--note: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23448aff"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>');
+  --print-md-admonition-icon--abstract: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2300b0ff"><path d="M4 5h16v2H4V5m0 4h16v2H4V9m0 4h16v2H4v-2m0 4h10v2H4v-2z"/></svg>');
+  --print-md-admonition-icon--info: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2300b8d4"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 002 12a10 10 0 0010 10 10 10 0 0010-10A10 10 0 0012 2z"/></svg>');
+  --print-md-admonition-icon--tip: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2300bfa5"><path d="M17.66 11.2c-.23-.3-.51-.56-.77-.82-.67-.6-1.43-1.03-2.07-1.66C13.33 7.26 13 4.85 13.95 3c-.95.23-1.78.75-2.49 1.32-2.59 2.08-3.61 5.75-2.39 8.9.04.1.08.2.08.33 0 .22-.15.42-.35.5-.23.1-.47.04-.66-.12a.58.58 0 01-.14-.17c-1.13-1.43-1.31-3.48-.55-5.12C5.78 10 4.87 12.3 5 14.47c.06.5.12 1 .29 1.5.14.6.41 1.2.71 1.73 1.08 1.73 2.95 2.97 4.96 3.22 2.14.27 4.43-.12 6.07-1.6 1.83-1.66 2.47-4.32 1.53-6.6l-.13-.26c-.21-.46-.77-1.26-.77-1.26m-3.16 6.3c-.28.24-.74.5-1.1.6-1.12.4-2.24-.16-2.9-.82 1.19-.28 1.9-1.16 2.11-2.05.17-.8-.15-1.46-.28-2.23-.12-.74-.1-1.37.17-2.06.19.38.39.76.63 1.06.77 1 1.98 1.44 2.24 2.8.04.14.06.28.06.43.03.82-.33 1.72-.93 2.27z"/></svg>');
+  --print-md-admonition-icon--success: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2300c853"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>');
+  --print-md-admonition-icon--question: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2364dd17"><path d="M15.07 11.25l-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 00-2-2 2 2 0 00-2 2H8a4 4 0 014-4 4 4 0 014 4 3.2 3.2 0 01-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 002 12a10 10 0 0010 10 10 10 0 0010-10c0-5.53-4.5-10-10-10z"/></svg>');
+  --print-md-admonition-icon--warning: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff9100"><path d="M13 14h-2V9h2m0 9h-2v-2h2M1 21h22L12 2 1 21z"/></svg>');
+  --print-md-admonition-icon--failure: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff5252"><path d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12 6.47 2 12 2m3.59 5L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41 15.59 7z"/></svg>');
+  --print-md-admonition-icon--danger: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff1744"><path d="M11.5 20l4.86-9.73H13V4l-5 9.73h3.5V20M12 2c2.75 0 5.1 1 7.05 2.95C21 6.9 22 9.25 22 12s-1 5.1-2.95 7.05C17.1 21 14.75 22 12 22s-5.1-1-7.05-2.95C3 17.1 2 14.75 2 12s1-5.1 2.95-7.05C6.9 3 9.25 2 12 2z"/></svg>');
+  --print-md-admonition-icon--bug: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23f50057"><path d="M14 12h-4v-2h4m0 6h-4v-2h4m6-6h-2.81a5.985 5.985 0 00-1.82-1.96L17 4.41 15.59 3l-2.17 2.17a6.002 6.002 0 00-2.83 0L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8z"/></svg>');
+  --print-md-admonition-icon--example: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23651fff"><path d="M7 13v-2h14v2H7m0 6v-2h14v2H7M7 7V5h14v2H7M3 8V5H2V4h2v4H3m-1 9v-1h3v4H2v-1h2v-.5H3v-1h1V17H2m2.25-7a.75.75 0 01.75.75c0 .2-.08.39-.21.52L3.12 13H5v1H2v-.92L4 11H2v-1h2.25z"/></svg>');
+  --print-md-admonition-icon--quote: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%239e9e9e"><path d="M14 17h3l2-4V7h-6v6h3M6 17h3l2-4V7H5v6h3l-2 4z"/></svg>'); }
+
+@media print {
+  .md-typeset .admonition-title {
+    padding: .6rem .6rem .4rem 2.2rem; }
+  .md-typeset .admonition-title::before {
+    margin-top: -0.15rem;
+    background-color: transparent;
+    background-image: var(--print-md-admonition-icon--note); }
+  .md-typeset .note > .admonition-title, .md-typeset .note > summary {
+    padding: .6rem .6rem .4rem 2.2rem; }
+  .md-typeset .note > .admonition-title::before, .md-typeset .note > summary::before {
+    margin-top: -0.15rem;
+    background-color: transparent;
+    background-image: var(--print-md-admonition-icon--note); }
+  .md-typeset .abstract > .admonition-title, .md-typeset .tldr > .admonition-title, .md-typeset .summary > .admonition-title, .md-typeset .abstract > summary, .md-typeset .tldr > summary, .md-typeset .summary > summary {
+    padding: .6rem .6rem .4rem 2.2rem; }
+  .md-typeset .abstract > .admonition-title::before, .md-typeset .tldr > .admonition-title::before, .md-typeset .summary > .admonition-title::before, .md-typeset .abstract > summary::before, .md-typeset .tldr > summary::before, .md-typeset .summary > summary::before {
+    margin-top: -0.15rem;
+    background-color: transparent;
+    background-image: var(--print-md-admonition-icon--abstract); }
+  .md-typeset .info > .admonition-title, .md-typeset .todo > .admonition-title, .md-typeset .info > summary, .md-typeset .todo > summary {
+    padding: .6rem .6rem .4rem 2.2rem; }
+  .md-typeset .info > .admonition-title::before, .md-typeset .todo > .admonition-title::before, .md-typeset .info > summary::before, .md-typeset .todo > summary::before {
+    margin-top: -0.15rem;
+    background-color: transparent;
+    background-image: var(--print-md-admonition-icon--info); }
+  .md-typeset .tip > .admonition-title, .md-typeset .important > .admonition-title, .md-typeset .hint > .admonition-title, .md-typeset .tip > summary, .md-typeset .important > summary, .md-typeset .hint > summary {
+    padding: .6rem .6rem .4rem 2.2rem; }
+  .md-typeset .tip > .admonition-title::before, .md-typeset .important > .admonition-title::before, .md-typeset .hint > .admonition-title::before, .md-typeset .tip > summary::before, .md-typeset .important > summary::before, .md-typeset .hint > summary::before {
+    margin-top: -0.15rem;
+    background-color: transparent;
+    background-image: var(--print-md-admonition-icon--tip); }
+  .md-typeset .success > .admonition-title, .md-typeset .done > .admonition-title, .md-typeset .check > .admonition-title, .md-typeset .success > summary, .md-typeset .done > summary, .md-typeset .check > summary {
+    padding: .6rem .6rem .4rem 2.2rem; }
+  .md-typeset .success > .admonition-title::before, .md-typeset .done > .admonition-title::before, .md-typeset .check > .admonition-title::before, .md-typeset .success > summary::before, .md-typeset .done > summary::before, .md-typeset .check > summary::before {
+    margin-top: -0.15rem;
+    background-color: transparent;
+    background-image: var(--print-md-admonition-icon--success); }
+  .md-typeset .question > .admonition-title, .md-typeset .faq > .admonition-title, .md-typeset .help > .admonition-title, .md-typeset .question > summary, .md-typeset .faq > summary, .md-typeset .help > summary {
+    padding: .6rem .6rem .4rem 2.2rem; }
+  .md-typeset .question > .admonition-title::before, .md-typeset .faq > .admonition-title::before, .md-typeset .help > .admonition-title::before, .md-typeset .question > summary::before, .md-typeset .faq > summary::before, .md-typeset .help > summary::before {
+    margin-top: -0.15rem;
+    background-color: transparent;
+    background-image: var(--print-md-admonition-icon--question); }
+  .md-typeset .warning > .admonition-title, .md-typeset .attention > .admonition-title, .md-typeset .caution > .admonition-title, .md-typeset .warning > summary, .md-typeset .attention > summary, .md-typeset .caution > summary {
+    padding: .6rem .6rem .4rem 2.2rem; }
+  .md-typeset .warning > .admonition-title::before, .md-typeset .attention > .admonition-title::before, .md-typeset .caution > .admonition-title::before, .md-typeset .warning > summary::before, .md-typeset .attention > summary::before, .md-typeset .caution > summary::before {
+    margin-top: -0.15rem;
+    background-color: transparent;
+    background-image: var(--print-md-admonition-icon--warning); }
+  .md-typeset .failure > .admonition-title, .md-typeset .missing > .admonition-title, .md-typeset .fail > .admonition-title, .md-typeset .failure > summary, .md-typeset .missing > summary, .md-typeset .fail > summary {
+    padding: .6rem .6rem .4rem 2.2rem; }
+  .md-typeset .failure > .admonition-title::before, .md-typeset .missing > .admonition-title::before, .md-typeset .fail > .admonition-title::before, .md-typeset .failure > summary::before, .md-typeset .missing > summary::before, .md-typeset .fail > summary::before {
+    margin-top: -0.15rem;
+    background-color: transparent;
+    background-image: var(--print-md-admonition-icon--failure); }
+  .md-typeset .danger > .admonition-title, .md-typeset .error > .admonition-title, .md-typeset .danger > summary, .md-typeset .error > summary {
+    padding: .6rem .6rem .4rem 2.2rem; }
+  .md-typeset .danger > .admonition-title::before, .md-typeset .error > .admonition-title::before, .md-typeset .danger > summary::before, .md-typeset .error > summary::before {
+    margin-top: -0.15rem;
+    background-color: transparent;
+    background-image: var(--print-md-admonition-icon--danger); }
+  .md-typeset .bug > .admonition-title, .md-typeset .bug > summary {
+    padding: .6rem .6rem .4rem 2.2rem; }
+  .md-typeset .bug > .admonition-title::before, .md-typeset .bug > summary::before {
+    margin-top: -0.15rem;
+    background-color: transparent;
+    background-image: var(--print-md-admonition-icon--bug); }
+  .md-typeset .example > .admonition-title, .md-typeset .example > summary {
+    padding: .6rem .6rem .4rem 2.2rem; }
+  .md-typeset .example > .admonition-title::before, .md-typeset .example > summary::before {
+    margin-top: -0.15rem;
+    background-color: transparent;
+    background-image: var(--print-md-admonition-icon--example); }
+  .md-typeset .quote > .admonition-title, .md-typeset .cite > .admonition-title, .md-typeset .quote > summary, .md-typeset .cite > summary {
+    padding: .6rem .6rem .4rem 2.2rem; }
+  .md-typeset .quote > .admonition-title::before, .md-typeset .cite > .admonition-title::before, .md-typeset .quote > summary::before, .md-typeset .cite > summary::before {
+    margin-top: -0.15rem;
+    background-color: transparent;
+    background-image: var(--print-md-admonition-icon--quote); } }
+
+:root {
+  --print-md-footnotes-icon: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23000000de"><path d="M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.42L5.83 13H21V7h-2z"/></svg>'); }
+
+@media print {
+  .md-typeset .footnote-backref::before {
+    background-color: transparent;
+    background-image: var(--print-md-footnotes-icon); } }
+
+:root {
+  --print-md-details-icon: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="hsla(0, 0%, 0%, 0.87)"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>'); }
+
+@media print {
+  .md-typeset summary::after {
+    background-color: transparent;
+    background-image: var(--print-md-details-icon);
+    -webkit-mask-image: none;
+    mask-image: none; } }
+
+:root {
+  --print-md-tasklist-icon: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ddd"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>');
+  --print-md-tasklist-icon--checked: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2300e676"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>'); }
+
+@media print {
+  .md-typeset .task-list-control .task-list-indicator::before {
+    background-color: transparent;
+    background-image: var(--print-md-tasklist-icon); }
+  .md-typeset .task-list-control [type=checkbox]:checked + .task-list-indicator::before {
+    background-color: transparent;
+    background-image: var(--print-md-tasklist-icon--checked); } }
+
+/*# sourceMappingURL=material-polyfills.css.map*/
+</style></head><body><article id="doc-cover">
+<div class="wrapper upper">
+<div class="logo" style="background-image: url(theme/logo-ibm-dark.png);"></div>
+</div>
+<div class="wrapper">
+<h1>The MLOps guide</h1>
+<h2>The MLOps guide</h2>
+</div>
+<div class="properties">
+<address>
+<p id="author">Mihai Criveti, Dominik Kreuzberger</p>
+<p id="copyright">Copyright © IBM Open Innovation Community</p>
+</address>
+</div>
+</article><article id="doc-toc"><h1>Contents</h1><ul><li><a href="#.:what-is-mlops"><span class="pdf-order">1. </span>What is MLOps?</a></li><li><a href="#.:mlops-with-ibm-cloud-pak-for-data"><span class="pdf-order">2. </span>MLOps with IBM Cloud Pak for Data</a></li><li><a href="#.:about-this-repository"><span class="pdf-order">3. </span>About this Repository</a></li><li><a href="#.:what-would-be-a-example-definition-of-mlops"><span class="pdf-order">4. </span>What would be a example definition of MLOps?</a></li><li><a href="#KBZG6ZDVMN2HG/"><span class="pdf-order">5. </span>Products</a><ul><li><a href="#products/watsonx/:extend-your-ai-capabilities-with-watsonx"><span class="pdf-order">5.1 </span>Extend your <abbr title="Artificial Intelligence">AI</abbr> capabilities with watsonx</a></li><li><a href="#products/cp4d/:cloud-pak-for-data"><span class="pdf-order">5.2 </span>Cloud Pak for Data</a></li></ul></li><li><a href="#KJSWC3DJPJUW4ZZAJVGE64DT/"><span class="pdf-order">6. </span>Realizing MLOps</a><ul><li><a href="#Realizing-20MLOps/overview/:overview-realizing-mlops"><span class="pdf-order">6.1 </span>Overview - Realizing MLOps</a></li><li><a href="#Realizing-20MLOps/datarefinery_datastage/:data-stage-and-data-refinery"><span class="pdf-order">6.2 </span>Data Stage and Data Refinery</a></li><li><a href="#Realizing-20MLOps/watsonstudio/:watson-studio"><span class="pdf-order">6.3 </span>Watson Studio</a></li><li><a href="#Realizing-20MLOps/wml/:watson-machine-learning"><span class="pdf-order">6.4 </span>Watson Machine Learning</a></li><li><a href="#Realizing-20MLOps/autoai/:autoai-no-code"><span class="pdf-order">6.5 </span>AutoAI (no-code)*</a></li><li><a href="#Realizing-20MLOps/spss_modeller/:spss-modeler-low-code"><span class="pdf-order">6.6 </span>SPSS Modeler (low-code)*</a></li><li><a href="#Realizing-20MLOps/pipelines/:watson-pipelines"><span class="pdf-order">6.7 </span>Watson Pipelines</a></li><li><a href="#Realizing-20MLOps/openscale/:watson-openscale"><span class="pdf-order">6.8 </span>Watson OpenScale</a></li><li><a href="#Realizing-20MLOps/AI_Gov_OpenPages_Factsheets/:ai-governance"><span class="pdf-order">6.9 </span><abbr title="Artificial Intelligence">AI</abbr> Governance</a></li></ul></li><li><a href="#O5QXI43PNZ4A/"><span class="pdf-order">7. </span>watsonx</a><ul><li><a href="#watsonx/watsonx/:introducing-watsonx"><span class="pdf-order">7.1 </span>Introducing watsonx</a></li></ul></li><li><a href="#JVGE64DTEBCXQYLNOBWGKICUMVWXA3DBORSXG/"><span class="pdf-order">8. </span>MLOps Example Templates</a><ul><li><a href="#MLOps-20Example-20Templates/examples/"><span class="pdf-order">8.1 </span>Examples</a></li></ul></li><li><a href="#INXW45DSNFRHK5DPOJZQ/"><span class="pdf-order">9. </span>Contributors</a><ul><li><a href="#contributors/contributors/:contributors"><span class="pdf-order">9.1 </span>Contributors</a></li></ul></li></ul></article><article class="md-content__inner md-typeset" data-url="/." id=".:">   <span class="md-content__button md-icon" title="Status: Draft"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a7.3 7.3 0 0 0-3.32.89c.2-.6.32-1.23.32-1.89 0-2.97-2.16-5.43-5-5.91V6H6V1.09C3.16 1.57 1 4.03 1 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-2.38A6.956 6.956 0 0 0 16 22c3.9 0 7-3.1 7-7s-3.1-7-7-7m-8 3.04V20H6v-8.96l-1-.58C3.77 9.74 3 8.42 3 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65 0 1.42-.77 2.74-2 3.46l-1 .58M16 20c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5m.5-4.7 2.9 1.7-.8 1.2L15 16v-5h1.5v4.3Z"></path></svg></span> <span class="md-content__button md-icon" title="Owner: Mihai Criveti, Dominik Kreuzberger"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0 1 12 20c-1.86 0-3.57-.64-4.93-1.72m11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.928 7.928 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.5-1.64 4.83M12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6m0 5a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 12 8a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 11Z"></path></svg></span> <h1 id=".:what-is-mlops"><span class="pdf-order">1. </span>What is MLOps?</h1> <p>Machine Learning Operations (MLOps) is a practice that builds on DevOps to create an automated and streamlined workflow specifically tailored for developing, deploying, and managing machine learning models and all associated assets. Machine learning models require extra consideration for monitoring models in production and retraining if the performance declines. Planning for MLOps and implementing a strategy is a step in the <abbr title="Artificial Intelligence">AI</abbr> journey if a company wants to derive greater benefit from machine learning models and manage risk. Follow us as we provide a roadmap to becoming an <abbr title="Artificial Intelligence">AI</abbr>-driven company.</p> <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="img/media/mlopsprocess.png"><img alt="MLOps Process" src="site/img/media/mlopsprocess.png" style="width: 800px;"/></a></p> <p>The engineering practice of MLOps leverages three contributing disciplines: machine learning, software engineering (especially DevOps), and data engineering. The goal of MLOps is to bridge the gap between development (Dev) and operations (Ops) and create a repeatable process for training, deploying, monitoring, and updating machine learning models.</p> <p>MLOps improves the collaboration between the different stakeholders in a data science project. An <abbr title="Artificial Intelligence">AI</abbr> project might include data scientists, software engineers, and subject matter experts, among others. MLOps provides tools and processes so that collaborators can contribute their part to achieve a seamless flow from model request to deploying models to solve business problems. </p> <p>IBM is here to help with your MLOps journey and support you in gaining a better understanding of how MLOps works and how IBM products can be used to build a solid MLOps ecosystem for your organization. IBM's Data and <abbr title="Artificial Intelligence">AI</abbr> portfolio includes the tools and capabilities you need to facilitate successful MLOps. Explore the information on this website to learn more about how to plan, execute, and customize an MLOps process that works for your needs.</p> <h1 id=".:mlops-with-ibm-cloud-pak-for-data"><span class="pdf-order">2. </span>MLOps with IBM Cloud Pak for Data</h1> <p>What steps and services to consider when realizing MLOps with IBMs Cloud Pak for Data?</p> <ul> <li> <p>Follow the <a href="#Realizing-20MLOps/overview/:">realizing MLOps steps in this Guide</a></p> </li> <li> <p>Follow the <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/use-case-data-science.html">official documentation</a>.</p> </li> </ul> <h1 id=".:about-this-repository"><span class="pdf-order">3. </span>About this Repository</h1> <p>This GitHub repository has been created by several MLOps experts with expertise in IBM Cloud Pak for Data. Use this guide to learn how to design an MLOps strategy based on Cloud Pak for Data services.</p> <h1 id=".:what-would-be-a-example-definition-of-mlops"><span class="pdf-order">4. </span>What would be a example definition of MLOps?</h1> <p>MLOps (Machine Learning Operations) is a paradigm aimed at bridging the gap between development (Dev) and operations (Ops) to manage and automate the <abbr title="Artificial Intelligence">AI</abbr> lifecycle. A full defintion of MLOps can be found e.g. here <a href="https://ieeexplore.ieee.org/document/10081336">MLOps Paper</a>.</p> <div class="admonition note"> <p class="admonition-title">The latest version can always be found here: <a href="https://ibm.github.io/MLOps/">https://ibm.github.io/MLOps/</a></p> </div> <p><a class="md-button" href="#pdf/mlops-guide.pdf/:">Download the latest (PDF)</a> <a class="md-button" href="#out/mlops-guide.docx/:">Download the latest (DOCX)</a></p> <hr/> <div class="md-source-file"> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 8, 2024</span> </small> </div> <div class="md-source-date"> <small> Authors: <span class="git-page-authors git-authors"><a href="mailto:dominik.kreuzberger@ibm.com">Dominik Kreuzberger</a>, <a href="mailto:julianne_forgo@us.ibm.com">Julianne Forgo</a>, <a href="mailto:crmihai1@ie.ibm.com">Mihai Criveti</a>, <a href="mailto:przemyslaw.czuba@ibm.com">Przemek Czuba</a>, <a href="mailto:yvette.machowski@ibm.com">Yvette Machowski</a></span> </small> </div> </article><article class="md-content__inner md-typeset" data-url="/KBZG6ZDVMN2HG/" id="KBZG6ZDVMN2HG/:"><h1 id="KBZG6ZDVMN2HG/"><span class="pdf-order">5. </span>Products</h1><section class="md-typeset" data-url="/products/watsonx/" id="products/watsonx/:">  <h2 id="products/watsonx/:extend-your-ai-capabilities-with-watsonx"><span class="pdf-order">5.1 </span>Extend your <abbr title="Artificial Intelligence">AI</abbr> capabilities with watsonx</h2> <p>IBM watsonx.ai is a studio of integrated tools for working with generative <abbr title="Artificial Intelligence">AI</abbr> capabilities that are powered by foundation models and for building machine learning models. IBM watsonx.ai provides a secure and collaborative environment where you can access your organization's trusted data, automate <abbr title="Artificial Intelligence">AI</abbr> processes, and deliver <abbr title="Artificial Intelligence">AI</abbr> in your applications.</p> <p>You can accomplish the following goals with IBM watsonx.ai:</p> <ul> <li><strong>Build machine learning models</strong> by using open source frameworks and code-based, automated, or visual data science tools.</li> <li><strong>Experiment with foundation models</strong> using prompts to pre-trained foundation models to generate, classify, summarize, or extract content from your input text. Choose from IBM models or open source models from Hugging Face.</li> <li><strong>Manage the <abbr title="Artificial Intelligence">AI</abbr> lifecycle</strong> and automate the full <abbr title="Artificial Intelligence">AI</abbr> model lifecycle with all the integrated tools and runtimes to train, validate, and deploy <abbr title="Artificial Intelligence">AI</abbr> models. </li> </ul> <h3 id="products/watsonx/:relationship-with-cloud-pak-for-data"><span class="pdf-order">5.1.1 </span>Relationship with Cloud Pak for Data</h3> <p>IBM watsonx as a Service and Cloud Pak for Data as a Service have similar platform functionality and are compatible in many ways. The watsonx platform provides a subset of the tools and services that are provided by Cloud Pak for Data as a Service. However, watsonx.ai on watsonx extends the functionality of the common toolset to enable working with foundation models and generative <abbr title="Artificial Intelligence">AI</abbr>.</p> <p>Both platforms provide services for data science and MLOps use cases:</p> <div class="codehilite"><pre><span></span><code>Watson Studio
+Watson Machine Learning
+AI governance
+</code></pre></div> <p>However, these services for watsonx.ai on the watsonx platform include features for working with foundation models and generative <abbr title="Artificial Intelligence">AI</abbr> that are not included in these services on Cloud Pak for Data as a Service.</p> <p>Cloud Pak for Data as a Service also provides services for these use cases:</p> <div class="codehilite"><pre><span></span><code>Data integration
+Data governance
+</code></pre></div> <h3 id="products/watsonx/:data-science-and-ai-tools"><span class="pdf-order">5.1.2 </span>Data science and <abbr title="Artificial Intelligence">AI</abbr> tools</h3> <p>Both platforms provide a common set of data science and <abbr title="Artificial Intelligence">AI</abbr> tools. However, on watsonx, you can also perform foundation model inferencing with the Prompt Lab tool or with a Python library in notebooks. Foundation model inferencing and the Prompt Lab tool are not available on Cloud Pak for Data. </p> <p>The following table shows which data science and <abbr title="Artificial Intelligence">AI</abbr> tools are available on each platform.</p> <table> <thead> <tr> <th>Tool</th> <th>On watsonx</th> <th>On Cloud Pak for Data</th> </tr> </thead> <tbody> <tr> <td>Prompt Lab</td> <td>✓</td> <td></td> </tr> <tr> <td>Synthetic Data Generator</td> <td>✓</td> <td></td> </tr> <tr> <td>Prompt lab</td> <td>✓</td> <td></td> </tr> <tr> <td>Synthetic Data Generator</td> <td>✓</td> <td></td> </tr> <tr> <td>Data Refinery</td> <td>✓</td> <td>✓</td> </tr> <tr> <td>Visualizations</td> <td>✓</td> <td>✓</td> </tr> <tr> <td>Jupyter notebooks</td> <td>✓</td> <td>✓</td> </tr> <tr> <td>Federated Learning</td> <td>✓</td> <td>✓</td> </tr> <tr> <td>RStudio IDE</td> <td>✓</td> <td>✓</td> </tr> <tr> <td>SPSS Modeler</td> <td>✓</td> <td>✓</td> </tr> <tr> <td>Decision Optimization</td> <td>✓</td> <td>✓</td> </tr> <tr> <td>AutoAI</td> <td>✓</td> <td>✓</td> </tr> <tr> <td>Watson Pipelines</td> <td>✓</td> <td>✓</td> </tr> </tbody> </table> <p><strong>Which one should you use?</strong></p> <p>The best platform for you will depend on your specific needs and requirements. If you are looking for a platform that can help you to multiply the impact of <abbr title="Artificial Intelligence">AI</abbr> across your organization, then watsonx is a good option. If you are looking for a platform that can help you to manage your data and build <abbr title="Artificial Intelligence">AI</abbr> applications, then Cloud Pak for Data is a good option.</p> <p>For details on watsonx, including how you can try this technology, see <a href="https://www.ibm.com/watsonx">watsonx</a>.</p> <p>Ultimately, the best way to decide which platform is right for you is to evaluate your needs and requirements and then speak with an IBM representative.</p> <hr/> <div class="md-source-file"> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 6, 2023</span> </small> </div> <div class="md-source-date"> <small> Authors: <span class="git-page-authors git-authors"><a href="mailto:julianne_forgo@us.ibm.com">Julianne Forgo</a>, <a href="mailto:maximilian.jesch@gmail.com">MaxJ</a></span> </small> </div> </section><section class="md-typeset" data-url="/products/cp4d/" id="products/cp4d/:">  <h2 id="products/cp4d/:cloud-pak-for-data"><span class="pdf-order">5.2 </span>Cloud Pak for Data</h2> <p>IBM Cloud Pak for Data is a cloud-native platform that helps you to build, deploy, and manage machine learning models at scale. It provides a unified set of tools and services for the entire MLOps lifecycle, from data preparation to model deployment and monitoring.</p> <h3 id="products/cp4d/:features"><span class="pdf-order">5.2.1 </span>Features</h3> <ul> <li><strong>Centralized data catalog:</strong> Makes it easy to find and share data.</li> <li><strong>Self-service data preparation tool:</strong> Helps you to clean and prepare your data for analysis.</li> <li><strong>Machine learning platform:</strong> Makes it easy to build and deploy machine learning models.</li> <li><strong>Model registry:</strong> Tracks the lineage and performance of your models.</li> <li><strong>Model monitoring tool:</strong> Helps you to track the performance of your models in production.</li> </ul> <h3 id="products/cp4d/:benefits"><span class="pdf-order">5.2.2 </span>Benefits</h3> <ul> <li><strong>Reduces the time it takes to get your models into production.</strong></li> <li><strong>Improves the accuracy and performance of your models.</strong></li> <li><strong>Helps you to make better decisions based on your models.</strong></li> <li><strong>Saves money on your <abbr title="Machine Learning">ML</abbr> infrastructure costs.</strong></li> </ul> <h3 id="products/cp4d/:conclusion"><span class="pdf-order">5.2.3 </span>Conclusion</h3> <p>IBM Cloud Pak for Data is a great option for organizations that are looking to accelerate their MLOps journey. It is a powerful and flexible platform that can help you to build, deploy, and manage machine learning models at scale.</p> <hr/> <div class="md-source-file"> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 14, 2023</span> </small> </div> <div class="md-source-date"> <small> Authors: <span class="git-page-authors git-authors"><a href="mailto:maximilian.jesch@gmail.com">MaxJ</a></span> </small> </div> </section></article><article class="md-content__inner md-typeset" data-url="/KJSWC3DJPJUW4ZZAJVGE64DT/" id="KJSWC3DJPJUW4ZZAJVGE64DT/:"><h1 id="KJSWC3DJPJUW4ZZAJVGE64DT/"><span class="pdf-order">6. </span>Realizing MLOps</h1><section class="md-typeset" data-url="/Realizing%20MLOps/overview/" id="Realizing-20MLOps/overview/:"> <nav class="md-tags"> <a class="md-tag" href="#tags/:gitops">gitops</a> <a class="md-tag" href="#tags/:cicd">cicd</a> <a class="md-tag" href="#tags/:continuous-delivery">continuous-delivery</a> <a class="md-tag" href="#tags/:git">git</a> </nav>   <span class="md-content__button md-icon" title="Status: Draft"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a7.3 7.3 0 0 0-3.32.89c.2-.6.32-1.23.32-1.89 0-2.97-2.16-5.43-5-5.91V6H6V1.09C3.16 1.57 1 4.03 1 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-2.38A6.956 6.956 0 0 0 16 22c3.9 0 7-3.1 7-7s-3.1-7-7-7m-8 3.04V20H6v-8.96l-1-.58C3.77 9.74 3 8.42 3 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65 0 1.42-.77 2.74-2 3.46l-1 .58M16 20c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5m.5-4.7 2.9 1.7-.8 1.2L15 16v-5h1.5v4.3Z"></path></svg></span> <span class="md-content__button md-icon" title="Owner: Mihai Criveti"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0 1 12 20c-1.86 0-3.57-.64-4.93-1.72m11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.928 7.928 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.5-1.64 4.83M12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6m0 5a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 12 8a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 11Z"></path></svg></span> <h2 id="Realizing-20MLOps/overview/:overview-realizing-mlops"><span class="pdf-order">6.1 </span>Overview - Realizing MLOps</h2> <p>IBM Cloud Pak for Data provides a full stack of tools to assist you in realizing your MLOps strategy. The services work together to provide all of the capabilities you need to work with data, create <abbr title="Artificial Intelligence">AI</abbr> assets, deploy the assets for productive use, and monitor and manage deployed assets.</p> <p><strong>Note:</strong> You do not have to use the full list of Cloud Pak for Data services listed here. You can choose the services you need to realize your MLOps solution.</p> <p>Key Cloud Pak for Data services for implementing MLOps include:</p> <ul> <li><strong>Data Stage</strong> and <strong>Data Refinery</strong> for integrating and preparing data to train machine learning models.</li> <li><strong>Watson Studio</strong> for organizing and creating assets, including data, models, and notebooks. "+ experiment tracking in Factsheets after each run."</li> <li><strong>Watson Machine Learning</strong> for organizing the resources, including environments, for deploying and managing machine learning models, scripts, and functions. Watson Machine Learning includes also:<ul> <li><strong>AutoAI (no-code)</strong> for automating training of machine learning models (for example, data scientists can use AutoAI to rapidly prototype a solution.)</li> <li><strong>SPSS Modeler (low-code)</strong> build an <abbr title="Machine Learning">ML</abbr> model by dragging and dropping operators and assets on a canvas and running a model as a flow. </li> </ul> </li> <li><strong>Watson Pipelines</strong> for automating a repeatable flow to manage the assets in your MLOps pipeline.</li> </ul> <p>Key Cloud Pak for Data services for implementing the <abbr title="Artificial Intelligence">AI</abbr> Governance part of your MLOps strategy include:</p> <ul> <li><strong>Watson OpenScale</strong> to evaluate and monitor deployments to ensure they perform to expectations for such dimensions as fairness, quality, and drift.</li> <li><strong>OpenPages</strong> manage your workflows by meeting governance regulations, policies, regulations for your assets (models) and build trust in your solution.</li> <li><strong><abbr title="Artificial Intelligence">AI</abbr> Factsheets</strong> captures model metadata, in all stages, from request to production.</li> </ul> <p>The MLOps suite of services all provide rich user interfaces in Cloud Pak for Data for building and managing assets. For example, monitor all of your deployed assets from a Deployments dashboard in Watson Machine Learning, or assemble and run your MLOps flow from a Watson Pipelines canvas.</p> <p>Alternatively, you can use programming interfaces to code MLOps assets and processes. Watson Machine Learning provides these programming interfaces:</p> <ul> <li>Use the <a href="https://ibm.github.io/watson-machine-learning-sdk/">Python client library</a> to work with all of your Watson Machine Learning assets in a notebook.</li> <li>Use the <a href="https://cloud.ibm.com/apidocs/machine-learning-cp">REST <abbr title="Application Programming Interface">API</abbr></a> to call methods from the base URLs for the Watson Machine Learning <abbr title="Application Programming Interface">API</abbr> endpoints.</li> </ul> <hr/> <div class="md-source-file"> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 1, 2023</span> </small> </div> <div class="md-source-date"> <small> Authors: <span class="git-page-authors git-authors"><a href="mailto:dominik.kreuzberger@ibm.com">Dominik Kreuzberger</a>, <a href="mailto:julianne_forgo@us.ibm.com">Julianne Forgo</a></span> </small> </div> </section><section class="md-typeset" data-url="/Realizing%20MLOps/datarefinery_datastage/" id="Realizing-20MLOps/datarefinery_datastage/:"> <nav class="md-tags"> <a class="md-tag" href="#tags/:gitops">gitops</a> <a class="md-tag" href="#tags/:cicd">cicd</a> <a class="md-tag" href="#tags/:continuous-delivery">continuous-delivery</a> <a class="md-tag" href="#tags/:git">git</a> </nav>   <span class="md-content__button md-icon" title="Status: Draft"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a7.3 7.3 0 0 0-3.32.89c.2-.6.32-1.23.32-1.89 0-2.97-2.16-5.43-5-5.91V6H6V1.09C3.16 1.57 1 4.03 1 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-2.38A6.956 6.956 0 0 0 16 22c3.9 0 7-3.1 7-7s-3.1-7-7-7m-8 3.04V20H6v-8.96l-1-.58C3.77 9.74 3 8.42 3 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65 0 1.42-.77 2.74-2 3.46l-1 .58M16 20c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5m.5-4.7 2.9 1.7-.8 1.2L15 16v-5h1.5v4.3Z"></path></svg></span> <span class="md-content__button md-icon" title="Owner: Mihai Criveti"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0 1 12 20c-1.86 0-3.57-.64-4.93-1.72m11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.928 7.928 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.5-1.64 4.83M12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6m0 5a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 12 8a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 11Z"></path></svg></span> <h2 id="Realizing-20MLOps/datarefinery_datastage/:data-stage-and-data-refinery"><span class="pdf-order">6.2 </span>Data Stage and Data Refinery</h2> <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><div class="tabbed-content--wrap"><input checked="checked" id="Realizing-20MLOps/datarefinery_datastage/:__tabbed_1_1" name="__tabbed_1" type="radio"/></div><div class="tabbed-content--wrap"><input id="Realizing-20MLOps/datarefinery_datastage/:__tabbed_1_2" name="__tabbed_1" type="radio"/><div class="tabbed-labels"><label for="__tabbed_1_1">Data Stage</label><label for="__tabbed_1_2">Data Refinery</label></div> <div class="tabbed-content"> <div class="tabbed-block"> <p>With the DataStage data integration tool, data engineers can design and run complex ETL data pipelines that move and transform data between operational, transactional, and analytical target systems. Data integration specialists use DataStage to develop flows that process and transform data. DataStage has capabilities that allow connecting directly to enterprise applications, cloud data sources, relational and NoSQL systems, REST endpoints, and more. You can administer, manage, deploy, and reuse these flows to integrate data across many systems throughout your organization.</p> <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="../img/media/DataStage.png"><img alt="DataStage" src="site/Realizing%20MLOps/img/media/DataStage.png" style="width: 650px;"/></a></p> <p>For more information check out the <a href="https://dataplatform.cloud.ibm.com/docs/content/dstage/dsnav/topics/datastage.html?context=cpdaas&amp;audience=wdp">official documentation</a>.</p> </div> <div class="tabbed-block"> <p>Data Refinery involves transforming raw data into clean, structured information for analysis and decision-making. It includes data collection, cleansing, integration, enrichment, and validation. Data is gathered from various sources, cleaned to remove errors, and integrated into a unified format. Enrichment adds additional context and attributes. Validation ensures data quality. Data refinery unlocks the value of data, enabling informed decisions and actionable insights.</p> <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="../img/media/DataRefinery.png"><img alt="DataRefinery" src="site/Realizing%20MLOps/img/media/DataRefinery.png" style="width: 900px;"/></a></p> <p>For more information check out the <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=services-data-refinery">official documentation</a>.</p> <p>Refine your data in Data Refinery <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/refinery/refining_data.html?context=cpdaas&amp;audience=wdp">official documentation</a>.</p> </div> </div> </div></div> <hr/> <div class="md-source-file"> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 18, 2023</span> </small> </div> <div class="md-source-date"> <small> Authors: <span class="git-page-authors git-authors"><a href="mailto:dominik.kreuzberger@ibm.com">Dominik Kreuzberger</a>, <a href="mailto:moritz.scheele@ibm.com">moritzscheele</a></span> </small> </div> </section><section class="md-typeset" data-url="/Realizing%20MLOps/watsonstudio/" id="Realizing-20MLOps/watsonstudio/:"> <nav class="md-tags"> <a class="md-tag" href="#tags/:gitops">gitops</a> <a class="md-tag" href="#tags/:cicd">cicd</a> <a class="md-tag" href="#tags/:continuous-delivery">continuous-delivery</a> <a class="md-tag" href="#tags/:git">git</a> </nav>   <span class="md-content__button md-icon" title="Status: Draft"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a7.3 7.3 0 0 0-3.32.89c.2-.6.32-1.23.32-1.89 0-2.97-2.16-5.43-5-5.91V6H6V1.09C3.16 1.57 1 4.03 1 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-2.38A6.956 6.956 0 0 0 16 22c3.9 0 7-3.1 7-7s-3.1-7-7-7m-8 3.04V20H6v-8.96l-1-.58C3.77 9.74 3 8.42 3 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65 0 1.42-.77 2.74-2 3.46l-1 .58M16 20c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5m.5-4.7 2.9 1.7-.8 1.2L15 16v-5h1.5v4.3Z"></path></svg></span> <span class="md-content__button md-icon" title="Owner: Mihai Criveti"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0 1 12 20c-1.86 0-3.57-.64-4.93-1.72m11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.928 7.928 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.5-1.64 4.83M12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6m0 5a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 12 8a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 11Z"></path></svg></span> <h2 id="Realizing-20MLOps/watsonstudio/:watson-studio"><span class="pdf-order">6.3 </span>Watson Studio</h2> <p>Watson Studio is part of Cloud Pak for Data and provides the data science capabilities of the data fabric architecture. Watson Studio provides the environment and tools for you to collaboratively work on data to solve your business problems. You can choose the tools you need to analyze and visualize data, to cleanse and shape data, to ingest streaming data, or to create and train machine learning models.</p> <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="../img/media/WatsonStudio.png"><img alt="WatsonStudio" src="site/Realizing%20MLOps/img/media/WatsonStudio.png" style="width: 900px;"/></a></p> <p>For more information check out the <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=services-watson-studio">official documentation</a>.</p> <p>Creating Jupyter Notebooks in Watson Studio <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=editor-creating-notebooks">official documentation</a>.</p> <hr/> <div class="md-source-file"> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 27, 2023</span> </small> </div> <div class="md-source-date"> <small> Authors: <span class="git-page-authors git-authors"><a href="mailto:dominik.kreuzberger@ibm.com">Dominik Kreuzberger</a></span> </small> </div> </section><section class="md-typeset" data-url="/Realizing%20MLOps/wml/" id="Realizing-20MLOps/wml/:"> <nav class="md-tags"> <a class="md-tag" href="#tags/:ml">ml</a> <a class="md-tag" href="#tags/:model_training">model_training</a> <a class="md-tag" href="#tags/:model_development">model_development</a> </nav>   <span class="md-content__button md-icon" title="Status: Draft"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a7.3 7.3 0 0 0-3.32.89c.2-.6.32-1.23.32-1.89 0-2.97-2.16-5.43-5-5.91V6H6V1.09C3.16 1.57 1 4.03 1 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-2.38A6.956 6.956 0 0 0 16 22c3.9 0 7-3.1 7-7s-3.1-7-7-7m-8 3.04V20H6v-8.96l-1-.58C3.77 9.74 3 8.42 3 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65 0 1.42-.77 2.74-2 3.46l-1 .58M16 20c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5m.5-4.7 2.9 1.7-.8 1.2L15 16v-5h1.5v4.3Z"></path></svg></span> <span class="md-content__button md-icon" title="Owner: Yvette Machowski &amp; Ilias Ennmouri"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0 1 12 20c-1.86 0-3.57-.64-4.93-1.72m11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.928 7.928 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.5-1.64 4.83M12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6m0 5a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 12 8a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 11Z"></path></svg></span> <h2 id="Realizing-20MLOps/wml/:watson-machine-learning"><span class="pdf-order">6.4 </span>Watson Machine Learning</h2> <p><a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=services-watson-machine-learning">Watson Machine Learning</a> (WML) provides a range of tools and services for you to build, train, test, and deploy models in Cloud Pak for Data.</p> <p>Depending on what is installed and configured for your deployment, you can use Watson Machine Learning to:</p> <ul> <li>Build, train, and deploy models from notebooks by using the Watson Machine Learning Python client library or the Watson Machine Learning <abbr title="Application Programming Interface">API</abbr>.</li> <li>Create AutoAI experiments. AutoAI automatically preprocesses your structured data, selects the best estimator for the data, and then generates model candidate pipelines for you to review and compare. Deploy the best-performing pipeline as a machine learning model.</li> <li>Run experiments to train complex Deep Learning models in Experiment Builder.</li> <li>Deploy your models so that you can score the models and generate predictions.</li> <li>Evaluate online deployments (requires Watson OpenScale service).</li> </ul> <h3 id="Realizing-20MLOps/wml/:training-models-with-watson-machine-learning"><span class="pdf-order">6.4.1 </span>Training models with Watson Machine Learning</h3> <p>Watson Machine Learning supports training machine learning models with tools that provide automation or autonomy matching your needs. Build a custom model using popular Machine Learning frameworks such as <a href="https://pytorch.org">PyTorch</a> or <a href="https://www.tensorflow.org">TensorFlow</a>*), or fully automate model creation and training with <a href="#Realizing-20MLOps/wml/:autoai.md">AutoAI</a>.</p> <p>AutoAI enables you to build and deploy machine learning models without coding. Use it as a rapid prototyping tool or as part of your end-to-end machine learning solutions. You can rely on the auto-detection features that analyze the training data, select a model type, and apply algorithms and tuning features, or you can customize the configuration to exercise finer control. Save the best model-candidate pipeline as a deployable model, or save the model code as a notebook so you can review the code and customaize as needed. AutoAI can be a powerful part of your machine learning solution.</p> <h3 id="Realizing-20MLOps/wml/:deploying-models-and-other-assets-with-watson-machine-learning"><span class="pdf-order">6.4.2 </span>Deploying models and other assets with Watson Machine Learning</h3> <p>Using IBM Watson Machine Learning, you can collect and organize all of the dependencies required to bring a a model, script, function or web app from training to production. For example, create a pre-production collaboratve space where you can upload the deployable asset and testing data for validating a deployment before moving it to a production space and putting it to work predicting outcomes based on real-world input data.</p> <p><a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=learning-managing-predictive-deployments">Manging Deployments - Official documentation</a></p> <h3 id="Realizing-20MLOps/wml/:extending-watson-machine-learning-to-govern-machine-learning-assets"><span class="pdf-order">6.4.3 </span>Extending Watson Machine Learning to govern machine learning assets</h3> <p>As part of your ModelOps strategy, you can extend Watson Machine Learning to include governance features, provided with the Watson OpenScale service. Once your tools and services are connected, you can monitor and evaluate online deployments for dimensions such as fairness, quality, and drift. Machine learning models require vigilance to make sure they do not stray from their intended mission. Part of the MLOps pipeline is to measure the machine learning outcomes and retrain and update the model and deployment when performance or outcomes fall below the thresholds you establish.</p> <p>Watson OpenScale also provides tools for creating what-if scenarios to better understand how a model is performing or to find better approaches to solving the business problem. Finally, track and collect the metadata for assets as they move through the <abbr title="Artificial Intelligence">AI</abbr> lifecycle to ensure compliance with governance standard. The combination of Watson Machine Learning and Watson OpenScale gives you the power to create <abbr title="Artificial Intelligence">AI</abbr> solutions that are effective, responsible, and trustworthy. </p> <hr/> <div class="md-source-file"> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 31, 2023</span> </small> </div> <div class="md-source-date"> <small> Authors: <span class="git-page-authors git-authors"><a href="mailto:dominik.kreuzberger@ibm.com">Dominik Kreuzberger</a>, <a href="mailto:ilias.ennmouri@mac.com">Ilias Ennmouri</a>, <a href="mailto:julianne_forgo@us.ibm.com">Julianne Forgo</a>, <a href="mailto:przemyslaw.czuba@ibm.com">Przemek Czuba</a></span> </small> </div> </section><section class="md-typeset" data-url="/Realizing%20MLOps/autoai/" id="Realizing-20MLOps/autoai/:"> <nav class="md-tags"> <a class="md-tag" href="#tags/:autoai">autoai</a> <a class="md-tag" href="#tags/:model_training">model_training</a> <a class="md-tag" href="#tags/:cicd">cicd</a> </nav>   <span class="md-content__button md-icon" title="Status: Draft"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a7.3 7.3 0 0 0-3.32.89c.2-.6.32-1.23.32-1.89 0-2.97-2.16-5.43-5-5.91V6H6V1.09C3.16 1.57 1 4.03 1 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-2.38A6.956 6.956 0 0 0 16 22c3.9 0 7-3.1 7-7s-3.1-7-7-7m-8 3.04V20H6v-8.96l-1-.58C3.77 9.74 3 8.42 3 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65 0 1.42-.77 2.74-2 3.46l-1 .58M16 20c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5m.5-4.7 2.9 1.7-.8 1.2L15 16v-5h1.5v4.3Z"></path></svg></span> <span class="md-content__button md-icon" title="Owner: Yvette Machowski &amp; Ilias Ennmouri"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0 1 12 20c-1.86 0-3.57-.64-4.93-1.72m11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.928 7.928 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.5-1.64 4.83M12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6m0 5a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 12 8a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 11Z"></path></svg></span> <h2 id="Realizing-20MLOps/autoai/:autoai-no-code"><span class="pdf-order">6.5 </span>AutoAI (no-code)*</h2> <p><span style="color: gray;">*<em>Use of AutoAI remains optional for your MLOps workflow. Depending on your scenario it may increase efficiency and model quality.</em> </span></p> <p>With AutoAI, you can train and save machine learning models without coding. The AutoAI tool in CP4D does most of the work for you. AutoAI uses sophisticated training capabilities to build models from your structured data sets. AutoAI automatically runs all major tasks that are part of building and ranking candidate model pipelines:</p> <ul> <li> <p><strong>Data pre-processing</strong>: AutoAI analyzes, cleans, and prepares your raw data for machine learning by applying various algorithms, or estimators. Unlike standard machine learning algorithms , it can work with various data formats and is able to handle missing values with data imputation methods you configure.</p> </li> <li> <p><strong>Automated model selection</strong>: AutoAI analyzes the training data, then suggests the model type(binary classification, multiclass classification, or regression) that best matches the data. If you are working with sequenced data/time data, you can also configure the model selection to create a time-series model.</p> </li> <li> <p><strong>Automated feature engineering</strong>: AutoAI explores various feature construction choices while progressively improving model accuracy with reinforcement learning to transform the data into the combination of features that best represents the problem for the most accurate prediction.</p> </li> <li> <p><strong>Hyperparameter optimization</strong>: The AutoAI hyper-parameter optimization uses a novel hyperparameter optimization algorithm to rapidly find and apply optimizations for the model-candidate pipelines.</p> </li> </ul> <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="../img/media/autoai-example.png"><img alt="AutoAI example" src="site/Realizing%20MLOps/img/media/autoai-example.png" style="width: 650px;"/></a></p> <h4 id="Realizing-20MLOps/autoai/:integrating-autoai-in-your-mlops-workflow">Integrating AutoAI in your MLOps workflow</h4> <p>The way you use AutoAI can vary depending on your use case. For example, you can use AutoAI to fully train models for your scenario. You can also use AutoAI to complement or accelerate your data science, by using it for specific tasks, such as model selection or hyperparameter optimization. As part of your MLOps planning, consider one of these approaches:</p> <p>If one of the above is true, or a similar scenario occurs, you are faced with two options.</p> <ul> <li><strong>Full Reliance</strong>: You can implement AutoAI within the Watson Studio Pipeline of your end-to-end MLOps workflow as sole Model Selector, Model Trainer <em>etc.</em> </li> </ul> <ul> <li><strong>Semi Reliance</strong>: Alternatively, you can run AutoAI in parallel to your custom <code>train_model.ipynb</code> notebook. In that case, your model training notebook will train your custom-built model while AutoAI trains all pre-developed models. You can then proceed to either deploy your custom-built model, or the model selected by AutoAI, depending on performance metrics you established earlier.</li> </ul> <p>For more information check out the <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=models-autoai">official documentation</a>.</p> <p>Examples <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=models-autoai">official documentation</a>.</p> <hr/> <div class="md-source-file"> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 31, 2023</span> </small> </div> <div class="md-source-date"> <small> Authors: <span class="git-page-authors git-authors"><a href="mailto:dominik.kreuzberger@ibm.com">Dominik Kreuzberger</a>, <a href="mailto:ilias.ennmouri@mac.com">Ilias Ennmouri</a>, <a href="mailto:przemyslaw.czuba@ibm.com">Przemek Czuba</a></span> </small> </div> </section><section class="md-typeset" data-url="/Realizing%20MLOps/spss_modeller/" id="Realizing-20MLOps/spss_modeller/:"> <nav class="md-tags"> <a class="md-tag" href="#tags/:autoai">autoai</a> <a class="md-tag" href="#tags/:model_training">model_training</a> <a class="md-tag" href="#tags/:cicd">cicd</a> </nav>   <span class="md-content__button md-icon" title="Status: Draft"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a7.3 7.3 0 0 0-3.32.89c.2-.6.32-1.23.32-1.89 0-2.97-2.16-5.43-5-5.91V6H6V1.09C3.16 1.57 1 4.03 1 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-2.38A6.956 6.956 0 0 0 16 22c3.9 0 7-3.1 7-7s-3.1-7-7-7m-8 3.04V20H6v-8.96l-1-.58C3.77 9.74 3 8.42 3 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65 0 1.42-.77 2.74-2 3.46l-1 .58M16 20c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5m.5-4.7 2.9 1.7-.8 1.2L15 16v-5h1.5v4.3Z"></path></svg></span> <span class="md-content__button md-icon" title="Owner: Yvette Machowski &amp; Ilias Ennmouri"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0 1 12 20c-1.86 0-3.57-.64-4.93-1.72m11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.928 7.928 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.5-1.64 4.83M12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6m0 5a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 12 8a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 11Z"></path></svg></span> <h2 id="Realizing-20MLOps/spss_modeller/:spss-modeler-low-code"><span class="pdf-order">6.6 </span>SPSS Modeler (low-code)*</h2> <p><span style="color: gray;">*<em>Use of SPSS Modeler remains optional for your MLOps workflow. Depending on your scenario it may increase efficiency and model quality.</em> </span></p> <p>You can use SPSS Modeler flows to build machine learning pipelines that you can use to iterate rapidly during the model building process. Whether you're trying to find the best algorithm or experimenting with different ways of preparing your data, you can create reproducible research that's easily understood by any member of your team.</p> <p>With SPSS Modeler flows, you can quickly develop predictive models using business expertise to improve decision making. The flows interface is based on the long-established SPSS Modeler client software and uses industry-standard CRISP-DM methodology. The SPSS Modeler service supports the entire data mining process, from data exploration all the way to better business results.</p> <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="../img/media/spss-modeler.png"><img alt="SPSS Modeler" src="site/Realizing%20MLOps/img/media/spss-modeler.png" style="width: 650px;"/></a></p> <p>For more information check out the <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=services-spss-modeler">official documentation</a>.</p> <p>Examples <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=models-spss-modeler">official documentation</a>.</p> <hr/> <div class="md-source-file"> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 31, 2023</span> </small> </div> <div class="md-source-date"> <small> Authors: <span class="git-page-authors git-authors"><a href="mailto:dominik.kreuzberger@ibm.com">Dominik Kreuzberger</a></span> </small> </div> </section><section class="md-typeset" data-url="/Realizing%20MLOps/pipelines/" id="Realizing-20MLOps/pipelines/:"> <nav class="md-tags"> <a class="md-tag" href="#tags/:gitops">gitops</a> <a class="md-tag" href="#tags/:cicd">cicd</a> <a class="md-tag" href="#tags/:continuous-delivery">continuous-delivery</a> <a class="md-tag" href="#tags/:git">git</a> </nav>   <span class="md-content__button md-icon" title="Status: Draft"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a7.3 7.3 0 0 0-3.32.89c.2-.6.32-1.23.32-1.89 0-2.97-2.16-5.43-5-5.91V6H6V1.09C3.16 1.57 1 4.03 1 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-2.38A6.956 6.956 0 0 0 16 22c3.9 0 7-3.1 7-7s-3.1-7-7-7m-8 3.04V20H6v-8.96l-1-.58C3.77 9.74 3 8.42 3 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65 0 1.42-.77 2.74-2 3.46l-1 .58M16 20c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5m.5-4.7 2.9 1.7-.8 1.2L15 16v-5h1.5v4.3Z"></path></svg></span> <span class="md-content__button md-icon" title="Owner: Mihai Criveti"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0 1 12 20c-1.86 0-3.57-.64-4.93-1.72m11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.928 7.928 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.5-1.64 4.83M12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6m0 5a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 12 8a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 11Z"></path></svg></span> <h2 id="Realizing-20MLOps/pipelines/:watson-pipelines"><span class="pdf-order">6.7 </span>Watson Pipelines</h2> <p>With the Watson™ Pipelines service, you can create a pipeline to automate the end-to-end flow of various assets, whether it’s training a model or running script-based assets from the time they are created through their deployment. Automating the end-to-end flow of these assets with a pipeline makes it simpler to build, run, and evaluate models, which speeds up the flow and reduces the overall time investment.</p> <p>You use a pipelines editor canvas to assemble and configure a pipeline that creates, trains, deploys, and updates machine learning models and Python scripts. To design a pipeline, you drag nodes onto the canvas, specify objects and parameters, then run and monitor the pipeline. Note that you must have the required service for any asset you include in your pipeline. For example, if you are cleaning data with DataStage, the DataStage service must be installed or provisioned for your Cloud Pak suite.</p> <p>Your team can collaborate across roles in the pipelines editor. For example, a data scientist can create a flow to train a model in the editor, and then a ModelOps engineer can add the steps to the flow to automate the process of training, deploying, and evaluating the model to a production environment.</p> <p>After you assemble the pipeline, you can rapidly update and test modifications with the Pipelines editor canvas, which provides tools to visualize the pipeline, customize it at run time with pipeline parameter variables, and then run it as a trial job or on a schedule.</p> <p>These tools are available with the Watson Pipelines service:</p> <ul> <li>Create a flow to collect data, run scripts, train models, store results, and more.</li> <li>Customize a unique pipelines component that can run a user-written function.</li> <li>Schedule jobs to run flows and enhance automation by adding node conditions.</li> </ul> <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="../img/media/Pipelines.png"><img alt="Watson Pipelines" src="site/Realizing%20MLOps/img/media/Pipelines.png" style="width: 900px;"/></a></p> <p>For more information check out the <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=services-watson-pipelines">official documentation</a>.</p> <p>Example Use [official documentation] (<a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=assets-watson-pipelines">https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=assets-watson-pipelines</a>).</p> <hr/> <div class="md-source-file"> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 31, 2023</span> </small> </div> <div class="md-source-date"> <small> Authors: <span class="git-page-authors git-authors"><a href="mailto:dominik.kreuzberger@ibm.com">Dominik Kreuzberger</a></span> </small> </div> </section><section class="md-typeset" data-url="/Realizing%20MLOps/openscale/" id="Realizing-20MLOps/openscale/:"> <nav class="md-tags"> <a class="md-tag" href="#tags/:gitops">gitops</a> <a class="md-tag" href="#tags/:cicd">cicd</a> <a class="md-tag" href="#tags/:continuous-delivery">continuous-delivery</a> <a class="md-tag" href="#tags/:git">git</a> </nav>   <span class="md-content__button md-icon" title="Status: Draft"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a7.3 7.3 0 0 0-3.32.89c.2-.6.32-1.23.32-1.89 0-2.97-2.16-5.43-5-5.91V6H6V1.09C3.16 1.57 1 4.03 1 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-2.38A6.956 6.956 0 0 0 16 22c3.9 0 7-3.1 7-7s-3.1-7-7-7m-8 3.04V20H6v-8.96l-1-.58C3.77 9.74 3 8.42 3 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65 0 1.42-.77 2.74-2 3.46l-1 .58M16 20c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5m.5-4.7 2.9 1.7-.8 1.2L15 16v-5h1.5v4.3Z"></path></svg></span> <span class="md-content__button md-icon" title="Owner: Moritz Scheele"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0 1 12 20c-1.86 0-3.57-.64-4.93-1.72m11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.928 7.928 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.5-1.64 4.83M12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6m0 5a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 12 8a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 11Z"></path></svg></span> <h2 id="Realizing-20MLOps/openscale/:watson-openscale"><span class="pdf-order">6.8 </span>Watson OpenScale</h2> <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><div class="tabbed-content--wrap"><input checked="checked" id="Realizing-20MLOps/openscale/:__tabbed_1_1" name="__tabbed_1" type="radio"/></div><div class="tabbed-content--wrap"><input id="Realizing-20MLOps/openscale/:__tabbed_1_2" name="__tabbed_1" type="radio"/><div class="tabbed-labels"><label for="__tabbed_1_1">What is Watson OpenScale?</label><label for="__tabbed_1_2">How we utilize the power of Watson OpenScale</label></div> <div class="tabbed-content"> <div class="tabbed-block"> <p>After you deploy a machine learning model, the work doesn’t stop. To guarantee that the model is functioning in production as expected, you must have a plan for monitoring the deployed model and updating it as needed. As part of your end-to-end MLOps process, consider IBM Watson OpenScale to evaluate model deployment to make sure they are fair, accurate, and performing to your standards.•</p> <p>When OpenScale is installed or provisioned as part of your Cloud Pak suite, you can provide the details for a deployment, then run scheduled evaluations that measure dimensions you configure for thresholds you set. For example, if you want to test whether predicted outcomes are fair across various age groups, you can configure the Fairness monitor to evaluate the outcomes for a monitored group, such as young adults, and compare the results to the age group most likely to get favorable results. If the results deviate more than a threshold you specify, you will get an alert that results require attention. The dimensions you can test are:</p> <ul> <li>Fairness: Configure a monitor for fairness to check if your model produces biased results for different groups, like gender or race. Set thresholds to measure predictions for a monitored group compared to a reference group.</li> <li>Quality: Configure a monitor for quality to assess your model's performance based on labeled test data. Set quality thresholds to track when a metric value falls outside an acceptable range.</li> <li>Drift: Configure a monitor for drift to ensure your deployments are up-to-date and consistent. Use feature importance to determine the impact of feature drift on your model.</li> <li>Explainability: Configure explainability settings to understand which features influence your model's predictions. Different methods like SHAP and LIME are available to suit your needs.</li> </ul> <p>All of the evaluation results can be reviewed and monitored in a single dashboard, as shown in this example:</p> <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="../wos_dashboard.png"><img alt="Watson OpenScale Dashboard" src="site/Realizing%20MLOps/wos_dashboard.png" style=""/></a></p> <p>For more information check out the <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=services-watson-openscale">official documentation</a> or the <a href="https://github.com/IBM/watson-openscale-samples">example Notebooks</a>.</p> </div> <div class="tabbed-block"> <p>In this use case we use Watson OpenScale to automatically verify:</p> <ul> <li> <p>whether the model is performing at a constant high accuracy. If performance dips below a threshold we set, an alert is triggered.</p> </li> <li> <p>whether the test data produces output that is similar to the training data. If there is a noticable deviation, we are alerted that it might be time to retrain the model.</p> </li> <li> <p>whether the model is discriminating against a particular group. In this case, we look at outcomes for older customers to ensure they are being treated fairly as compared to the reference group.</p> </li> </ul> <p>Results are automatically checked by Watson OpenScale whenever new data is scored by the model. If one of the checks fails, an alert will be send to the responsible person so that steps can be taken to mitigate the problem. OpenScale also generates visualizations that you can use to diagnose a potential problem, as shown in this example:</p> <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="../wos_graph.png"><img alt="wos_graph" src="site/Realizing%20MLOps/wos_graph.png" style=""/></a></p> </div> </div> </div></div> <hr/> <div class="md-source-file"> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 27, 2023</span> </small> </div> <div class="md-source-date"> <small> Authors: <span class="git-page-authors git-authors"><a href="mailto:dominik.kreuzberger@ibm.com">Dominik Kreuzberger</a>, <a href="mailto:julianne_forgo@us.ibm.com">Julianne Forgo</a>, <a href="mailto:przemyslaw.czuba@ibm.com">Przemek Czuba</a>, <a href="mailto:moritz.scheele@ibm.com">moritzscheele</a></span> </small> </div> </section><section class="md-typeset" data-url="/Realizing%20MLOps/AI_Gov_OpenPages_Factsheets/" id="Realizing-20MLOps/AI_Gov_OpenPages_Factsheets/:"> <nav class="md-tags"> <a class="md-tag" href="#tags/:gitops">gitops</a> <a class="md-tag" href="#tags/:cicd">cicd</a> <a class="md-tag" href="#tags/:continuous-delivery">continuous-delivery</a> <a class="md-tag" href="#tags/:git">git</a> </nav>   <span class="md-content__button md-icon" title="Status: Draft"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a7.3 7.3 0 0 0-3.32.89c.2-.6.32-1.23.32-1.89 0-2.97-2.16-5.43-5-5.91V6H6V1.09C3.16 1.57 1 4.03 1 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-2.38A6.956 6.956 0 0 0 16 22c3.9 0 7-3.1 7-7s-3.1-7-7-7m-8 3.04V20H6v-8.96l-1-.58C3.77 9.74 3 8.42 3 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65 0 1.42-.77 2.74-2 3.46l-1 .58M16 20c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5m.5-4.7 2.9 1.7-.8 1.2L15 16v-5h1.5v4.3Z"></path></svg></span> <span class="md-content__button md-icon" title="Owner: Mihai Criveti"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0 1 12 20c-1.86 0-3.57-.64-4.93-1.72m11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.928 7.928 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.5-1.64 4.83M12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6m0 5a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 12 8a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 11Z"></path></svg></span> <h2 id="Realizing-20MLOps/AI_Gov_OpenPages_Factsheets/:ai-governance"><span class="pdf-order">6.9 </span><abbr title="Artificial Intelligence">AI</abbr> Governance</h2> <p><abbr title="Artificial Intelligence">AI</abbr> governance is about ensuring greater transparency across the <abbr title="Artificial Intelligence">AI</abbr> lifecycle and the model itself. IBM recently announced watsonx.governance, a next generation enterprise toolkit which is designed to automate and accelerate workloads <strong>across the <abbr title="Artificial Intelligence">AI</abbr> lifecycle</strong> while providing <strong>risk management</strong> and facilitating <strong>regulatory compliance.</strong> Use IBM <abbr title="Artificial Intelligence">AI</abbr> Governance services to accelerate responsible, transparent, and explainable <abbr title="Artificial Intelligence">AI</abbr> workflows with an <abbr title="Artificial Intelligence">AI</abbr> governance solution that provides end-to-end monitoring for machine learning. Monitor machine learning assets from request to production. Collect facts about models that are built with IBM tools or third-party providers in a single dashboard to aid in meeting compliance and governance goals. Implement an approval workflow to meet complaince goals.</p> <p>These Cloud Pak for data services can be used individually or together as part of your governance and MLOps plan.</p> <p><strong><abbr title="Artificial Intelligence">AI</abbr> Factsheets</strong> allows automated collection and documentation of model metadata at all stages, from model idea to production</p> <p>Model and process metadata is captured in a central meta store. Having all model facts in central place is important both to increase the productivity of the MLOps process (model facts are immediately visible to all parties involved in the lifecycle of an <abbr title="Artificial Intelligence">AI</abbr> model) and to comply with regulatory requirements. Data scientists benefit from assistance and automation of the documentation process. Transparency of model metadata supports audits and brings more clarity to stakeholder or customer requests. Metadata captured in <abbr title="Artificial Intelligence">AI</abbr> factsheets includes model details, training information, metrics, input and output schemas, or details about the models used, such as quality metrics, fairness or drift details.</p> <p><a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=services-ai-factsheets"><abbr title="Artificial Intelligence">AI</abbr> Factsheets - Official Documentation</a> <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=governance-ai-factsheets"><abbr title="Artificial Intelligence">AI</abbr> Governance - Factsheets - Official Documentation</a></p> <p><strong>OpenPages</strong>: Govern models through the complete <abbr title="Artificial Intelligence">AI</abbr> workflow considering policies and regulations</p> <p>The next generation governance-toolkit provides a range of capabilities to identify, manage, monitor, and report on risk and compliance. It accelerates the creation of models at scale, from use case idea (model candidates) to production deployment, by incorporating approvals in the workflow-based approach. Full transparency of any type of model (e.g., task specific data science artefacts or foundation models) is ensured and made visible in customisable risk monitoring dashboards. Additionally in Open Pages corporate policies and regulations can be assigned to models, e.g., annual bias review (required for EU <abbr title="Artificial Intelligence">AI</abbr> ACT) to ensure that models are fair, transparent, and compliant [4].</p> <p><a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=services-openpages">OpenPages - Official Documentation</a></p> <p><strong>OpenScale</strong> allows to monitor, explain, and benchmark your model</p> <p>Model monitoring is an ongoing task to track models and to drive transparency. This includes the monitoring of the general model performance (e.g., accuracy) and more specifically monitoring of fairness or model and data consistency over time (i.e. drift). Open Pages supports threshold definitions for model performance metrics and combines those with automated detection of threshold violations to trigger model retraining. It implements explainability by supporting explanations how the model arrived at certain predictions. Model benchmarking is supported – it is common practice to compare and benchmark a challenger model with a model in production to ensure that the best model is the one in production.</p> <p><a href="#Realizing-20MLOps/openscale/:">See OpenScale in this Handbook</a>.</p> <p>For more information check out the <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=services-watson-openscale">official documentation</a> or the <a href="https://github.com/IBM/watson-openscale-samples">example Notebooks</a>.</p> <hr/> <div class="md-source-file"> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 8, 2024</span> </small> </div> <div class="md-source-date"> <small> Authors: <span class="git-page-authors git-authors"><a href="mailto:dominik.kreuzberger@ibm.com">Dominik Kreuzberger</a>, <a href="mailto:julianne_forgo@us.ibm.com">Julianne Forgo</a></span> </small> </div> </section></article><article class="md-content__inner md-typeset" data-url="/O5QXI43PNZ4A/" id="O5QXI43PNZ4A/:"><h1 id="O5QXI43PNZ4A/"><span class="pdf-order">7. </span>watsonx</h1><section class="md-typeset" data-url="/watsonx/watsonx/" id="watsonx/watsonx/:">   <span class="md-content__button md-icon" title="Status: Draft"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a7.3 7.3 0 0 0-3.32.89c.2-.6.32-1.23.32-1.89 0-2.97-2.16-5.43-5-5.91V6H6V1.09C3.16 1.57 1 4.03 1 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-2.38A6.956 6.956 0 0 0 16 22c3.9 0 7-3.1 7-7s-3.1-7-7-7m-8 3.04V20H6v-8.96l-1-.58C3.77 9.74 3 8.42 3 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65 0 1.42-.77 2.74-2 3.46l-1 .58M16 20c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5m.5-4.7 2.9 1.7-.8 1.2L15 16v-5h1.5v4.3Z"></path></svg></span> <span class="md-content__button md-icon" title="Owner: Mihai Criveti, Dominik Kreuzberger"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0 1 12 20c-1.86 0-3.57-.64-4.93-1.72m11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.928 7.928 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.5-1.64 4.83M12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6m0 5a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 12 8a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 11Z"></path></svg></span> <h2 id="watsonx/watsonx/:introducing-watsonx"><span class="pdf-order">7.1 </span>Introducing watsonx</h2> <p>Machine Learning Operations (MLOps) is the process of moving machine learning models from development and testing to production.  MLOps is now extended to support training of foundation models and putting foundation model assets into productive use. Foundational models are the basis of generative <abbr title="Artificial Intelligence">AI</abbr>. Large Language Models (LLMs) are a type of foundation models that support language-based generative <abbr title="Artificial Intelligence">AI</abbr> used for a variety of applications, including advanced chat or summarization. A large language model takes input in the form of a prompt and generates output. Operating large language models in production is MLOps for LLMs called LLMOps. </p> <p>Overview of watsonx:</p> <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="../img/media/watsonx.png"><img alt="WatsonStudio" src="site/watsonx/img/media/watsonx.png" style="width: 900px;"/></a></p> <p>For the latest news on watsonx offerings and capabilities, see <a href="https://www.ibm.com/watsonx">https://www.ibm.com/watsonx</a>.</p> <hr/> <div class="md-source-file"> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 10, 2023</span> </small> </div> <div class="md-source-date"> <small> Authors: <span class="git-page-authors git-authors"><a href="mailto:dominik.kreuzberger@ibm.com">Dominik Kreuzberger</a>, <a href="mailto:julianne_forgo@us.ibm.com">Julianne Forgo</a></span> </small> </div> </section></article><article class="md-content__inner md-typeset" data-url="/JVGE64DTEBCXQYLNOBWGKICUMVWXA3DBORSXG/" id="JVGE64DTEBCXQYLNOBWGKICUMVWXA3DBORSXG/:"><h1 id="JVGE64DTEBCXQYLNOBWGKICUMVWXA3DBORSXG/"><span class="pdf-order">8. </span>MLOps Example Templates</h1><section class="md-typeset" data-url="/MLOps%20Example%20Templates/examples/" id="MLOps-20Example-20Templates/examples/:">  <h2 id="MLOps-20Example-20Templates/examples/"><span class="pdf-order">8.1 </span>Examples</h2> <h3 id="MLOps-20Example-20Templates/examples/:cp4d-mlops-example-templates"><span class="pdf-order">8.1.1 </span>CP4D MLOps Example Templates</h3> <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="../img/media/banner.png"><img alt="MLOps" src="site/MLOps%20Example%20Templates/img/media/banner.png" style="width: 700px;"/></a></p> <p>For example, the <a href="https://github.com/IBM/MLOps">CP4D MLOps Accelerator</a> is a step-by-step guide to help you set-up your Cloud Pak for Data environment to faciliate efficient MLOps.</p> <p>The accelerator documents the implementation of a simple end-to-end MLOps workflow that uses services from the Cloud Pak for Data software stack to demonstrate the full <abbr title="Artificial Intelligence">AI</abbr> lifecycle, from training to production. The accelerator is specifically built to demonstrate the creation of a basic workflow, while allowing for rapid customization. For example, you can tailor this flow to include your custom-built PyTorch or TensorFlow models.</p> <p>Use this accelerator as a guide to building your own MLOps pipeline.</p> <p>We include:</p> <ul> <li> <p>full documentation of the CP4D environment set-up.</p> </li> <li> <p>sample notebooks that populate the environment with MLOps steps, including <code>data_validation</code>, <code>model_training</code>, and <code>model_deployment</code>.</p> </li> <li> <p>a pipeline that connects the standalone notebooks sequentially to create a repeatable, automated end-to-end flow.</p> </li> </ul> <h3 id="MLOps-20Example-20Templates/examples/:additional-examples"><span class="pdf-order">8.1.2 </span>Additional Examples</h3> <ul> <li>The sample <a href="https://github.ibm.com/Ilias-Ennmouri/mlops-sustainability-oss">mlops-sustainability-oss 🌱</a> demonstrates a self-sustaining end-to-end CP4D MLOps workflow for a flood forecasting model with automated data/model versioning and rollback.</li> </ul> <h3 id="MLOps-20Example-20Templates/examples/:more-examples-coming-soon"><span class="pdf-order">8.1.3 </span>More Examples (coming soon)</h3> <ul> <li>We are continously improving our assets. More example assets will be added shortly.</li> </ul> <hr/> <div class="md-source-file"> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 31, 2023</span> </small> </div> <div class="md-source-date"> <small> Authors: <span class="git-page-authors git-authors"><a href="mailto:dominik.kreuzberger@ibm.com">Dominik Kreuzberger</a>, <a href="mailto:ilias.ennmouri@mac.com">Ilias Ennmouri</a>, <a href="mailto:julianne_forgo@us.ibm.com">Julianne Forgo</a></span> </small> </div> </section></article><article class="md-content__inner md-typeset" data-url="/INXW45DSNFRHK5DPOJZQ/" id="INXW45DSNFRHK5DPOJZQ/:"><h1 id="INXW45DSNFRHK5DPOJZQ/"><span class="pdf-order">9. </span>Contributors</h1><section class="md-typeset" data-url="/contributors/contributors/" id="contributors/contributors/:">   <span class="md-content__button md-icon" title="Status: Draft"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a7.3 7.3 0 0 0-3.32.89c.2-.6.32-1.23.32-1.89 0-2.97-2.16-5.43-5-5.91V6H6V1.09C3.16 1.57 1 4.03 1 7c0 2.22 1.21 4.15 3 5.19V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-2.38A6.956 6.956 0 0 0 16 22c3.9 0 7-3.1 7-7s-3.1-7-7-7m-8 3.04V20H6v-8.96l-1-.58C3.77 9.74 3 8.42 3 7c0-1 .37-1.94 1-2.65V8h6V4.35c.63.71 1 1.65 1 2.65 0 1.42-.77 2.74-2 3.46l-1 .58M16 20c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5m.5-4.7 2.9 1.7-.8 1.2L15 16v-5h1.5v4.3Z"></path></svg></span> <span class="md-content__button md-icon" title="Owner: Mihai Criveti, Dominik Kreuzberger"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0 1 12 20c-1.86 0-3.57-.64-4.93-1.72m11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.928 7.928 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.5-1.64 4.83M12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6m0 5a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 12 8a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 11Z"></path></svg></span> <h2 id="contributors/contributors/:contributors"><span class="pdf-order">9.1 </span>Contributors</h2> <p>This MLOps Guide has been created by several different technical communities: Customer Success, Client Engineering, Expert Labs, Documentation Team, Consulting, Development and Infrastructure. Special thanks to our Executive Champions Kate Blair and Hardy Gröger for supporting this initiative!</p> <table> <thead> <tr> <th>Name</th> <th>IBM Unit/Description</th> </tr> </thead> <tbody> <tr> <td>Hardy Gröger</td> <td>Distinguished Engineer &amp; Technical Lead Data and AI DACH</td> </tr> <tr> <td>Kate Blair</td> <td>Director, Product Management, watsonx.ai</td> </tr> <tr> <td>Dominik Kreuzberger</td> <td>Customer Success</td> </tr> <tr> <td>Maximilan Jesch</td> <td>Customer Success</td> </tr> <tr> <td>Hasan Özdemir</td> <td>Customer Success</td> </tr> <tr> <td>Carsten Holtmann</td> <td>Customer Success</td> </tr> <tr> <td>Ilias Ennmouri</td> <td>Customer Success</td> </tr> <tr> <td>Yvette Machowski</td> <td>Customer Success</td> </tr> <tr> <td>Alejandro González</td> <td>Customer Success</td> </tr> <tr> <td>Daniel Horn</td> <td>Customer Success</td> </tr> <tr> <td>Andrea Bartoš</td> <td>Customer Success</td> </tr> <tr> <td>Benedikt Bothur</td> <td>Customer Success</td> </tr> <tr> <td>Ivan Iliash</td> <td>Customer Success</td> <tr> <td>Moritz Scheele</td> <td>Expert Labs</td> </tr> <tr> <td>Lena Eckstein</td> <td>Expert Labs</td> </tr> <tr> <td>Lucas Baier</td> <td>Client Engineering</td> </tr> <tr> <td>Leonard Brucksch</td> <td>Client Engineering</td> </tr> <tr> <td>Michael Vössing</td> <td>Client Engineering</td> </tr> <tr> <td>Ellen Hoeven</td> <td>Client Engineering</td> </tr> <tr> <td>Tim Noah-Schmidt</td> <td>Client Engineering</td> </tr> <tr> <td>Michael Daschner</td> <td>Development</td> </tr> <tr> <td>Mihai Criveti</td> <td>Consulting</td> </tr> <tr> <td>Maximilian Wurzer</td> <td>Consulting</td> </tr> <tr> <td>Sebastian Lehrig</td> <td>Infrastructure</td> </tr> <tr> <td>Julianne Forgo</td> <td>Documentation Team - Data &amp; AI</td> </tr> <tr> <td>Przemek Czuba</td> <td>Documentation Team - Data &amp; AI</td> </tr> </tr></tbody> </table> <hr/> <div class="md-source-file"> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 8, 2024</span> </small> </div> <div class="md-source-date"> <small> Authors: <span class="git-page-authors git-authors"><a href="mailto:dominik.kreuzberger@ibm.com">Dominik Kreuzberger</a>, <a href="mailto:crmihai1@ie.ibm.com">Mihai Criveti</a></span> </small> </div> </section></article></body></html>

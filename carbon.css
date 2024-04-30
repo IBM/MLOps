@@ -1,0 +1,286 @@
+/* Author: Xavier Santolaria <xavier.santolaria1@ibm.com> */
+
+@font-face {
+    font-family: "IBM Plex Sans";
+    src: url("https://1.www.s81c.com/common/carbon/plex/sans.css");
+}
+@font-face {
+    font-family: "IBM Plex Mono";
+    src: url("https://1.www.s81c.com/common/carbon/plex/mono.css");
+}
+
+:root {
+    --md-text-font: "IBM Plex Sans";
+    --md-code-font: "IBM Plex Mono";
+}
+
+/* `White' from v11 https://www.carbondesignsystem.com/guidelines/color/usage */
+[data-md-color-scheme="carbon-design-light"] {
+    /* Carbon Design System colors */
+    --cds-color-blue60: #0f62fe;
+    --cds-color-blue70: #0043ce;
+    --cds-color-error: #da1e28;
+    --cds-color-gray50: #8d8d8d;
+    --cds-color-gray70: #525252;
+    --cds-color-gray100: #161616;
+    --cds-color-info: #0043ce;
+    --cds-color-primary-button: var(--cds-color-blue60);
+    --cds-color-primary-links: var(--cds-color-blue60);
+    --cds-color-purple40: #8a3ffc;
+    --cds-color-success: #24a148;
+    --cds-color-warning: #f1c21b;
+    --cds-color-white: #ffffff;
+
+    /* Primary color shades */
+    --md-primary-fg-color:          var(--cds-color-gray100); 
+    --md-primary-fg-color--light:   var(--cds-color-gray70);
+    --md-primary-fg-color--dark:    var(--cds-color-gray100);
+    --md-primary-bg-color:          var(--cds-color-white);
+    --md-primary-bg-color--light:   var(--cds-color-gray50);
+
+    /* Accent color shades */
+    --md-accent-fg-color:           var(--cds-color-blue70);
+    --md-accent-bg-color:           var(--cds-color-white);
+    --md-accent-bg-color--light:    var(--md-primary-bg-color--light);
+    
+    /* Default color shades */
+    --md-default-fg-color:          var(--md-primary-fg-color);
+    --md-default-fg-color--light:   var(--md-primary-fg-color--light);
+    --md-default-fg-color--lighter: var(--md-primary-fg-color--light);
+    --md-default-bg-color:          var(--md-primary-bg-color);
+    
+    /* Typeset color shades */
+    --md-typeset-a-color:           var(--cds-color-primary-links);
+
+    /* Admonition color shades */
+    --md-admonition-fg-color:       var(--md-default-fg-color);
+    --md-admonition-bg-color:       var(--md-default-bg-color);
+
+    /* Warning color shades */
+    --md-warning-fg-color:          var(--md-default-fg-color);
+    --md-warning-bg-color:          var(--cds-color-warning);
+
+    /* Footer color shades */
+    --md-footer-fg-color:           var(--cds-color-white);
+    --md-footer-fg-color--light:    var(--cds-color-white);
+    --md-footer-bg-color:           var(--cds-color-gray100);
+    --md-footer-bg-color--dark:     var(--cds-color-gray100);
+}
+/* `Gray 100' from v11 https://www.carbondesignsystem.com/guidelines/color/usage */
+[data-md-color-scheme="carbon-design-dark"] {
+    /* Carbon Design System colors */
+    --cds-color-blue40: #78a9ff;
+    --cds-color-blue60: #0f62fe;
+    --cds-color-error: #fa4d56;
+    --cds-color-gray10: #f4f4f4;
+    --cds-color-gray30: #c6c6c6;
+    --cds-color-gray50: #8d8d8d;
+    --cds-color-gray80: #393939;
+    --cds-color-gray90: #262626;
+    --cds-color-gray100: #161616;
+    --cds-color-info: #4589ff;
+    --cds-color-primary-button: var(--cds-color-blue60);
+    --cds-color-primary-links: var(--cds-color-blue40);
+    --cds-color-purple40: #be95ff;
+    --cds-color-success: #24a148;
+    --cds-color-warning: #f1c21b;
+    --cds-color-white: #ffffff;
+
+    /* Primary color shades */
+    --md-primary-fg-color:          var(--cds-color-gray100);
+    --md-primary-fg-color--light:   var(--cds-color-gray10);
+    --md-primary-fg-color--dark:    var(--cds-color-gray80);
+    --md-primary-bg-color:          var(--cds-color-gray100);
+    --md-primary-bg-color--light:   var(--cds-color-gray50);
+    
+    /* Accent color shades */
+    --md-accent-fg-color:           var(--cds-color-blue60);
+    --md-accent-bg-color:           var(--cds-color-white);
+    --md-accent-bg-color--light:    hsla(0, 0%, 55%, 0.16);
+    
+    /* Default color shades */
+    --md-default-fg-color:              var(--md-primary-fg-color--light);
+    --md-default-fg-color--light:       var(--md-primary-fg-color--light);
+    --md-default-fg-color--lighter:     var(--md-primary-fg-color--light);
+    --md-default-fg-color--lightest:    var(--md-primary-fg-color--dark);
+    --md-default-bg-color:              var(--md-primary-bg-color);;
+    
+    --md-typeset-color:             var(--md-primary-fg-color--light);
+
+    /* Typeset color shades */
+    --md-typeset-a-color:           var(--cds-color-primary-links);
+
+    /* Code color shades */
+    --md-code-fg-color:             var(--md-default-fg-color--light);
+    --md-code-bg-color:             var(--cds-color-gray90);
+
+    /* Typeset `table` color shades */
+    --md-typeset-table-color:           var(--md-default-fg-color--light);
+    --md-typeset-table-color--light:    var(--cds-color-blue60);
+
+    /* Admonition color shades */
+    --md-admonition-fg-color:       var(--md-default-fg-color--light);
+    --md-admonition-bg-color:       transparent;
+
+    /* Warning color shades */
+    --md-warning-fg-color:          var(--md-default-fg-color);
+    --md-warning-bg-color:          var(--cds-color-warning);
+
+    /* Footer color shades */
+    --md-footer-fg-color:           var(--md-default-fg-color);
+    --md-footer-fg-color--dark:     var(--md-default-fg-color--dark);
+    --md-footer-bg-color:           var(--md-default-bg-color);
+    --md-footer-bg-color--dark:     var(--md-default-bg-color);
+}
+
+/* 
+    XXX: This works for both light and dark themes.
+    Couldn't find anything beter to fix the font colors for the dark theme.
+*/
+/* Increase default font size, by popular request */
+.md-typeset {
+    font-size: 0.9rem;
+}
+.md-nav {
+    font-size: 0.8rem;
+}
+.md-nav--lifted > .md-nav__list > .md-nav__item--active > .md-nav__link {
+    font-size: 0.8rem;
+}
+.md-nav__item, .md-nav__link {
+    font-size: 0.7rem;
+}
+[dir="ltr"] .md-nav--integrated > .md-nav__list > .md-nav__item--active .md-nav--secondary {
+    border-left: .05rem solid var(--md-default-fg-color);
+}
+/* Header */
+.md-header, .md-tabs {
+    color: var(--cds-color-white);
+}
+/* Announce block/banner */
+.md-banner {
+    background-color: var(--cds-color-white);
+    color: var(--cds-color-gray100);
+    text-align: center;
+}
+/* Buttons */
+.md-typeset .md-button {
+    color: var(--cds-color-white);
+    background-color: var(--cds-color-primary-button);
+    border: 0;
+}
+/* Task Lists */
+.md-typeset .task-list-indicator::before {
+    background-color: var(--md-default-fg-color--lightest);
+}
+.md-typeset [type="checkbox"]:checked + .task-list-indicator::before {
+    background-color: var(--cds-color-success);
+}
+/* 
+    Carbon Design Colors: https://carbondesignsystem.com/components/notification/style
+    Material for MKDocs supported Admonitions:
+        https://squidfunk.github.io/mkdocs-material/reference/admonitions/?h=admo#supported-types
+*/
+.md-typeset :is(.admonition, details) {
+    border-width: 0;
+    border-left-width: 4px;
+    /* Increase default font size, by popular request */
+    font-size: .7rem;
+}
+.md-typeset :is(details) > :is(summary, .admonition, .admonition-title) {
+    background-color: var(--md-default-bg-color);
+}
+
+/* Abstract, Info, Note, Tip */
+.md-typeset :is(.admonition, details):is(.abstract, .summary, .tldr),
+.md-typeset :is(.admonition, details):is(.info, .todo),
+.md-typeset :is(.admonition, details):is(.note),
+.md-typeset :is(.admonition, details):is(.tip, .hint, .important) {
+    border-color: var(--cds-color-info);
+}
+.md-typeset :is(.abstract, .summary, .tldr) > :is(.admonition-title, summary)::before,
+.md-typeset :is(.info, .todo) > :is(.admonition-title, summary)::before,
+.md-typeset :is(.note) > :is(.admonition-title, summary)::before,
+.md-typeset :is(.tip, .hint, .important) > :is(.admonition-title, summary)::before {
+    background-color: var(--cds-color-info);
+}
+.md-typeset :is(.abstract, .summary, .tldr) > :is(.admonition-title, summary)::after,
+.md-typeset :is(.info, .todo) > :is(.admonition-title, summary)::after,
+.md-typeset :is(.note) > :is(.admonition-title, summary)::after,
+.md-typeset :is(.tip, .hint, .important) > :is(.admonition-title, summary)::after {
+    color: var(--cds-color-info);
+}
+/* Example */
+.md-typeset :is(.admonition, details):is(.example) {
+    border-color: var(--cds-color-purple40);
+}
+.md-typeset :is(.example) > :is(.admonition-title, summary)::before {
+    background-color: var(--cds-color-purple40);
+}
+.md-typeset :is(.example) > :is(.admonition-title, summary)::after {
+    color: var(--cds-color-purple40);
+}
+/* Success, Question */
+.md-typeset :is(.admonition, details):is(.success, .check, .done),
+.md-typeset :is(.admonition, details):is(.question, .help, .faq) {
+    border-color: var(--cds-color-success);
+}
+.md-typeset :is(.question, .help, .faq) > :is(.admonition-title, summary)::before,
+.md-typeset :is(.success, .check, .done) > :is(.admonition-title, summary)::before {
+    background-color: var(--cds-color-success);
+}
+.md-typeset :is(.question, .help, .faq) > :is(.admonition-title, summary)::after,
+.md-typeset :is(.success, .check, .done) > :is(.admonition-title, summary)::after {
+    color: var(--cds-color-success);
+}
+/* Warning */
+.md-typeset :is(.admonition, details):is(.warning, .caution, .attention) {
+    border-color: var(--md-warning-bg-color);
+}
+.md-typeset :is(.warning, .caution, .attention) > :is(.admonition-title, summary)::before {
+    background-color: var(--md-warning-bg-color);
+}
+.md-typeset :is(.warning, .caution, .attention) > :is(.admonition-title, summary)::after {
+    color: var(--md-warning-bg-color);
+}
+/* Bug, Danger, Error, Failure */
+.md-typeset :is(.admonition, details):is(.bug),
+.md-typeset :is(.admonition, details):is(.danger, .error),
+.md-typeset :is(.admonition, details):is(.failure, .fail, .missing) {
+    border-color: var(--cds-color-error);
+}
+.md-typeset :is(.bug, .danger, .error, .failure, .fail, .missing) > :is(.admonition-title, summary)::before {
+    background-color: var(--cds-color-error);
+}
+.md-typeset :is(.bug) > :is(.admonition-title, summary)::after,
+.md-typeset :is(.danger, .error) > :is(.admonition-title, summary)::after,
+.md-typeset :is(.failure, .fail, .missing) > :is(.admonition-title, summary)::after {
+    color: var(--cds-color-error);
+}
+
+.md-typeset :is(.admonition) > :is(.admonition-title, summary),
+.md-typeset :is(details, .abstract) > :is(summary) {
+    background-color: var(--md-admonition-bg-color);
+}
+/* All Admonitions */
+.md-typeset :is(.abstract, .bug, .danger, .example, .failure, .info, .note,
+    .question, .quote, .success, .summary, .tip, .tldr, .warning) > :is(.admonition-title, summary) {
+    box-shadow: var(--md-shadow-z1);
+    /* XXX:
+        Litle hack. That variable only exists in the dark theme.
+        So the light theme will pick up the default admonition bg color.
+    */
+    background-color: var(--cds-color-gray80);
+}
+
+@media only screen and (max-width: 42rem) {
+    footer .md-tabs__list {
+        white-space: normal;
+        padding-bottom: 0.8rem;
+    }
+
+    footer .md-tabs__item {
+        height: auto;
+        width: 100%;
+    }
+}
